@@ -1,0 +1,37 @@
+.sidebar {
+  height: 100vh;
+  background-color: var(--purple);
+  display: grid;
+  grid-auto-rows: max-content;
+  gap: 6rem;
+  padding: 4rem;
+}
+
+.sidebar-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+}
+
+.sidebar-navigation a {
+  display: flex;
+  gap: 1.6rem;
+  color: var(--sidebar-purple);
+}
+
+.sidebar-navigation svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.sidebar-navigation a span {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.sidebar-navigation a.active,
+.sidebar-navigation a.active span {
+  font-weight: 700;
+  color: white;
+}
