@@ -5,7 +5,6 @@
 }
 
 :root {
-  font-family: "Inter", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,13 +16,25 @@
   --light-purple: #e2d6ff;
   --white-purple: #fbfaff;
   --sidebar-purple: #cab3ff;
+  --black: #403937;
 }
 
 body {
-  font-size: 1.6rem;
   background-color: var(--purple);
+}
+
+body,
+input,
+button {
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+}
+
+button {
+  cursor: pointer;
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
