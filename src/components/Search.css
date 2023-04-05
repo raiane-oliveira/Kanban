@@ -39,12 +39,12 @@
 .search-bar svg {
   width: 2.4rem;
   height: 2.4rem;
+  fill: #505059;
 }
 
 .search-input {
   width: 100%;
   border: 0;
-
   color: #7c7c8a;
 }
 
