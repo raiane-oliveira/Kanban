@@ -1,0 +1,13 @@
+.board-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.board-column h3 {
+  padding-top: 2.4rem;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.6rem;
+  color: var(--black);
+}

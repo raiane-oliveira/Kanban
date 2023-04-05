@@ -1,0 +1,36 @@
+.card {
+  background-color: white;
+  border-radius: 0.8rem;
+  box-shadow: 0px 4px 16px 0px #eae2fd;
+  padding: 2.4rem;
+  font-size: 1.4rem;
+
+  display: grid;
+  gap: 1rem;
+}
+
+.card-title {
+  color: var(--black);
+  font-weight: 700;
+  line-height: 1.82rem;
+}
+
+.card p {
+  color: #756966;
+  font-weight: 500;
+  line-height: 1.82rem;
+}
+
+.card-tags-wrapper {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.card-tags-wrapper .card-tag {
+  background-color: var(--light-purple);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.8rem;
+  color: var(--purple);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
