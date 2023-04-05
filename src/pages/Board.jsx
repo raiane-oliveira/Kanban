@@ -1,10 +1,5 @@
-import { Header } from "./components/Header";
-import { Container } from "./components/Container";
-import { Sidebar } from "./components/Sidebar";
-import { Search } from "./components/Search";
-import { BoardColumn } from "./components/BoardColumn";
-
-import "./App.css";
+import { BoardColumn } from "../components/BoardColumn";
+import "./Board.css";
 
 let dataTodo = [
   {
@@ -63,21 +58,12 @@ let dataDone = [
   },
 ];
 
-function App() {
+export default function Board() {
   return (
-    <div className="App">
-      <Sidebar />
-      <Container>
-        <Header title="Meu Kanban" />
-        <Search />
-        <main className="board-content">
-          <BoardColumn title={"A fazer"} content={dataTodo} />
-          <BoardColumn title={"Fazendo"} content={dataDoing} />
-          <BoardColumn title={"Feito"} content={dataDone} />
-        </main>
-      </Container>
-    </div>
+    <main className="board-content">
+      <BoardColumn title={"A fazer"} content={dataTodo} />
+      <BoardColumn title={"Fazendo"} content={dataDoing} />
+      <BoardColumn title={"Feito"} content={dataDone} />
+    </main>
   );
 }
-
-export default App;

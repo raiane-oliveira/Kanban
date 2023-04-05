@@ -7,6 +7,7 @@ import {
 import logo from "../assets/logo.svg";
 
 import "./Sidebar.css";
+import { NavLink } from "react-router-dom";
 
 export function Sidebar() {
   return (
@@ -14,10 +15,10 @@ export function Sidebar() {
       <img src={logo} alt="Logo em espiral Kanban" className="logo" />
 
       <nav className="sidebar-navigation">
-        <a className="active" href="#">
+        <NavLink to="/">
           <DeviceTabletSpeaker weight="fill" />
           <span>Boards</span>
-        </a>
+        </NavLink>
         <a href="#">
           <Users weight="fill" />
           <span>Equipes</span>
