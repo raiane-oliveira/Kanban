@@ -1,11 +1,18 @@
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 
 import "./Search.css";
+import { useState } from "react";
 
 export function Search() {
+  const [search, setSearch] = useState("");
+
+  function handleChange(e) {
+    setSearch(e.target.value);
+  }
+
   return (
-    <form className="search-form">
-      <button className="search-btn">
+    <form onSubmit={(e) => e.preventDefault()} className="search-form">
+      <button type="button" className="search-btn">
         <FunnelSimple />
         <span>Filtrar</span>
       </button>
@@ -17,6 +24,8 @@ export function Search() {
           className="search-input"
           aria-label="Barra de pesquisa"
           placeholder="Busque por cards, assuntos ou responsáveis..."
+          value={search}
+          onChange={handleChange}
         />
       </div>
     </form>
