@@ -11,9 +11,7 @@ export function Search({ setSearchQuery }) {
     let querySearch = e.target.value;
     setSearch(querySearch);
 
-    if (querySearch.trim()) {
-      setSearchQuery(querySearch);
-    }
+    setSearchQuery(querySearch.trim() ? querySearch : "");
   }
 
   return (
