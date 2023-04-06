@@ -15,11 +15,11 @@ export function BoardColumn({ title, content, id }) {
           {content.map((data, index) => (
             <Card
               key={data.id}
+              id={data.id}
+              index={index}
               title={data.title}
               content={data.paragraph}
               tags={data.tags}
-              id={data.id}
-              index={index}
             />
           ))}
 

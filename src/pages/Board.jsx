@@ -70,47 +70,56 @@ let dataDone = [
 ];
 
 export default function Board() {
-  const [todo, setTodo] = useState(dataTodo);
-  const [doing, setDoing] = useState(dataDoing);
-  const [done, setDone] = useState(dataDone);
+  const [columns, setColumns] = useState({
+    todo: dataTodo,
+    doing: dataDoing,
+    done: dataDone,
+  });
 
   function handleDragEnd(result) {
-    if (!result.destination) return;
+    const { destination, source } = result;
 
-    const sourceIdList = result.source.droppableId;
-    const destinationIdList = result.destination.droppableId;
+    if (!destination) return;
 
-    const listItems =
-      sourceIdList === "todo"
-        ? [...todo]
-        : sourceIdList === "doing"
-        ? [...doing]
-        : [...done];
-
-    const sourceList = [...listItems];
-
-    // Removes the dragged item from its previous position
-    const [removedItem] = sourceList.splice(result.source.index, 1);
-
-    // Adds this removed item to the destination list
-    sourceList.splice(result.destination.index, 0, removedItem);
-
-    if (sourceIdList === destinationIdList) {
-      if (sourceIdList === "todo") setTodo(sourceList);
-      else if (sourceIdList === "doing") setDoing(sourceList);
-      else if (sourceIdList === "done") setDone(sourceList);
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
     }
 
-    console.log(sourceList);
-    console.log(result);
+    const sourceNameList = source.droppableId;
+    const destinationNameList = destination.droppableId;
+
+    const sourceList = columns[sourceNameList];
+    const destinationList = columns[destinationNameList];
+
+    if (sourceNameList === destinationNameList) {
+      const [removedItem] = sourceList.splice(source.index, 1);
+      sourceList.splice(destination.index, 0, removedItem);
+
+      setColumns({
+        ...columns,
+        [sourceNameList]: sourceList,
+      });
+    } else {
+      const [removedItem] = sourceList.splice(source.index, 1);
+      destinationList.splice(destination.index, 0, removedItem);
+
+      setColumns({
+        ...columns,
+        [sourceNameList]: sourceList,
+        [destinationNameList]: destinationList,
+      });
+    }
   }
 
   return (
     <main className="board-content">
       <DragDropContext onDragEnd={handleDragEnd}>
-        <BoardColumn id="todo" title={"A fazer"} content={todo} />
-        <BoardColumn id="doing" title={"Fazendo"} content={doing} />
-        <BoardColumn id="done" title={"Feito"} content={done} />
+        <BoardColumn id="todo" title={"A fazer"} content={columns.todo} />
+        <BoardColumn id="doing" title={"Fazendo"} content={columns.doing} />
+        <BoardColumn id="done" title={"Feito"} content={columns.done} />
       </DragDropContext>
     </main>
   );
