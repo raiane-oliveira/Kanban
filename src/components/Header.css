@@ -35,8 +35,7 @@
   .img-profile {
     display: none;
   }
-
-  .title-header {
+  .title-header h1 {
     font-size: 2.8rem;
   }
 }
