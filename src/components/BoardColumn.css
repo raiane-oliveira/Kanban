@@ -1,7 +1,6 @@
 .board-column {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
 }
 
 .board-column h3 {
