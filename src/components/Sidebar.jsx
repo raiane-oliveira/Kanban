@@ -27,10 +27,10 @@ export function Sidebar() {
           <FileText weight="fill" />
           <span>Relatórios</span>
         </a>
-        <a href="#">
+        <NavLink to="/settings">
           <Gear />
           <span>Ajustes</span>
-        </a>
+        </NavLink>
       </nav>
     </aside>
   );
