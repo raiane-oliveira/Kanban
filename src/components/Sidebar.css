@@ -7,10 +7,21 @@
   padding: 4rem;
 }
 
+.menu-wrapper {
+  display: none;
+}
+
+.menu-wrapper .menu {
+  fill: var(--sidebar-purple);
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
 .sidebar-navigation {
   display: flex;
   flex-direction: column;
   gap: 3.6rem;
+  transition: 0.5s;
 }
 
 .sidebar-navigation a {
@@ -34,4 +45,22 @@
 .sidebar-navigation a.active span {
   font-weight: 700;
   color: white;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    padding: 4rem 3rem;
+  }
+
+  .sidebar .menu-wrapper {
+    display: block;
+  }
+
+  .sidebar img {
+    display: none;
+  }
+
+  .sidebar-navigation {
+    display: none;
+  }
 }

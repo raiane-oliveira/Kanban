@@ -2,6 +2,7 @@ import {
   DeviceTabletSpeaker,
   FileText,
   Gear,
+  List,
   Users,
 } from "@phosphor-icons/react";
 import logo from "../assets/logo.svg";
@@ -12,8 +13,11 @@ import { NavLink } from "react-router-dom";
 export function Sidebar() {
   return (
     <aside className="sidebar">
-      <img src={logo} alt="Logo em espiral Kanban" className="logo" />
+      <div className="menu-wrapper">
+        <List className="menu" />
+      </div>
 
+      <img src={logo} alt="Logo em espiral Kanban" className="logo" />
       <nav className="sidebar-navigation">
         <NavLink to="/">
           <DeviceTabletSpeaker weight="fill" />

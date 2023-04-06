@@ -51,3 +51,9 @@
 .search-input:focus {
   outline-color: transparent;
 }
+
+@media (max-width: 642px) {
+  .search-form {
+    flex-direction: column-reverse;
+  }
+}

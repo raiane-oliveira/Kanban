@@ -30,3 +30,13 @@
   border-radius: 9999px;
   background: rgba(0, 0, 0, 0.3);
 }
+
+@media (max-width: 538px) {
+  .img-profile {
+    display: none;
+  }
+
+  .title-header {
+    font-size: 2.8rem;
+  }
+}
