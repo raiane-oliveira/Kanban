@@ -2,12 +2,18 @@ import "./Search.css";
 
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import { useState } from "react";
+import data from "../data";
 
-export function Search() {
+export function Search({ setSearchQuery }) {
   const [search, setSearch] = useState("");
 
   function handleChange(e) {
-    setSearch(e.target.value);
+    let querySearch = e.target.value;
+    setSearch(querySearch);
+
+    if (querySearch.trim()) {
+      setSearchQuery(querySearch);
+    }
   }
 
   return (

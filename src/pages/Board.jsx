@@ -9,6 +9,17 @@ import "./Board.css";
 
 export default function Board() {
   const [columns, setColumns] = useState(data);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  function filterTasks(task) {
+    const searchQueryLower = searchQuery.toLowerCase();
+
+    return (
+      task.title.toLowerCase().includes(searchQueryLower) ||
+      task.paragraph.toLowerCase().includes(searchQueryLower) ||
+      task.tags.some((tag) => tag.toLowerCase().includes(searchQueryLower))
+    );
+  }
 
   function handleDragEnd(result) {
     const { destination, source } = result;
@@ -51,12 +62,24 @@ export default function Board() {
   return (
     <>
       <Header title="Meu Kanban" />
-      <Search />
+      <Search setSearchQuery={setSearchQuery} />
       <main className="board-content">
         <DragDropContext onDragEnd={handleDragEnd}>
-          <BoardColumn id="todo" title={"A fazer"} content={columns.todo} />
-          <BoardColumn id="doing" title={"Fazendo"} content={columns.doing} />
-          <BoardColumn id="done" title={"Feito"} content={columns.done} />
+          <BoardColumn
+            id="todo"
+            title={"A fazer"}
+            content={columns.todo.filter((task) => filterTasks(task))}
+          />
+          <BoardColumn
+            id="doing"
+            title={"Fazendo"}
+            content={columns.doing.filter((task) => filterTasks(task))}
+          />
+          <BoardColumn
+            id="done"
+            title={"Feito"}
+            content={columns.done.filter((task) => filterTasks(task))}
+          />
         </DragDropContext>
       </main>
     </>
