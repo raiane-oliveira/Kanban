@@ -1,6 +1,8 @@
 import { BoardColumn } from "../components/BoardColumn";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useState } from "react";
+import { Header } from "../components/Header";
+import { Search } from "../components/Search";
 
 import "./Board.css";
 
@@ -115,12 +117,16 @@ export default function Board() {
   }
 
   return (
-    <main className="board-content">
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <BoardColumn id="todo" title={"A fazer"} content={columns.todo} />
-        <BoardColumn id="doing" title={"Fazendo"} content={columns.doing} />
-        <BoardColumn id="done" title={"Feito"} content={columns.done} />
-      </DragDropContext>
-    </main>
+    <>
+      <Header title="Meu Kanban" />
+      <Search />
+      <main className="board-content">
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <BoardColumn id="todo" title={"A fazer"} content={columns.todo} />
+          <BoardColumn id="doing" title={"Fazendo"} content={columns.doing} />
+          <BoardColumn id="done" title={"Feito"} content={columns.done} />
+        </DragDropContext>
+      </main>
+    </>
   );
 }
