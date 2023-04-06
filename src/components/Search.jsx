@@ -3,11 +3,11 @@ import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import { useState } from "react";
 
 export function Search({ setSearchQuery }) {
-  const [search, setSearch] = useState("");
+  const [inputSearch, setInputSearch] = useState("");
 
   function handleChange(e) {
     let querySearch = e.target.value;
-    setSearch(querySearch);
+    setInputSearch(querySearch);
     setSearchQuery(querySearch.trim() ? querySearch : "");
   }
 
@@ -25,7 +25,7 @@ export function Search({ setSearchQuery }) {
           className="search-input"
           aria-label="Barra de pesquisa"
           placeholder="Busque por cards, assuntos ou responsáveis..."
-          value={search}
+          value={inputSearch}
           onChange={handleChange}
         />
       </div>
