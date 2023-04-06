@@ -3,16 +3,12 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { Search } from "../components/Search";
-import { dataTodo, dataDoing, dataDone } from "../data";
+import data from "../data";
 
 import "./Board.css";
 
 export default function Board() {
-  const [columns, setColumns] = useState({
-    todo: dataTodo,
-    doing: dataDoing,
-    done: dataDone,
-  });
+  const [columns, setColumns] = useState(data);
 
   function handleDragEnd(result) {
     const { destination, source } = result;

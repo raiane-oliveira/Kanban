@@ -1,6 +1,6 @@
-import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
-
 import "./Search.css";
+
+import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import { useState } from "react";
 
 export function Search() {

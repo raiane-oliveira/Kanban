@@ -1,9 +1,9 @@
-export const dataTodo = [
+const dataTodo = [
   {
     id: 1,
     title: "#boraCodar um Kanban",
     paragraph:
-      "Novo desafio do #boraCodar da Rocketseat, onde é proposto export construir um quadro de Kanban.",
+      "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
     tags: ["rocketseat", "desafio"],
   },
   {
@@ -22,7 +22,7 @@ export const dataTodo = [
   },
 ];
 
-export const dataDoing = [
+const dataDoing = [
   {
     id: 4,
     title: "Conferir o novo desafio",
@@ -39,7 +39,7 @@ export const dataDoing = [
   },
 ];
 
-export const dataDone = [
+const dataDone = [
   {
     id: 6,
     title: "#boraCodar uma página de login 🧑‍💻",
@@ -62,3 +62,11 @@ export const dataDone = [
     tags: ["rocketseat", "desafio"],
   },
 ];
+
+const data = {
+  todo: dataTodo,
+  doing: dataDoing,
+  done: dataDone,
+};
+
+export default data;
