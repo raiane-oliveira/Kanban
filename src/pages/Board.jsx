@@ -36,8 +36,8 @@ export default function Board() {
     const sourceNameList = source.droppableId;
     const destinationNameList = destination.droppableId;
 
-    const sourceList = columns[sourceNameList];
-    const destinationList = columns[destinationNameList];
+    const sourceList = [...columns[sourceNameList]];
+    const destinationList = [...columns[destinationNameList]];
 
     if (sourceNameList === destinationNameList) {
       const [removedItem] = sourceList.splice(source.index, 1);
