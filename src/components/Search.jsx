@@ -38,6 +38,7 @@ export function Search({ setSearchQuery }) {
 
       {isFilterBtnActive && (
         <div className="select-search-form">
+          <h4 className="title-select-search-form">Tags</h4>
           <ul>
             {Array.from(tags).map((tag) => (
               <li key={`${tag}${countKeySelect++}`} onClick={handleChange}>
