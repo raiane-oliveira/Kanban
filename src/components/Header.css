@@ -11,7 +11,8 @@
   gap: 1.2rem;
 }
 
-.title-header h1 {
+.title-header h1,
+.input-edit-header {
   color: var(--black);
   font-size: 3.2rem;
   font-weight: 700;
@@ -22,6 +23,17 @@
   width: 2.4rem;
   height: 3.4rem;
   color: #c7c7cd;
+  cursor: pointer;
+}
+
+.input-edit-header {
+  background-color: transparent;
+  border: 0;
+  width: auto;
+}
+
+.input-edit-header:focus {
+  outline: 1px solid transparent;
 }
 
 .img-profile {
