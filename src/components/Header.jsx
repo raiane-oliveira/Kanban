@@ -3,7 +3,7 @@ import { PencilSimple } from "@phosphor-icons/react";
 import "./Header.css";
 import { useState } from "react";
 
-export function Header({ title, img, imgAlt }) {
+export function Header({ title, img, imgAlt, isNotBoardsSection }) {
   const [currentTitle, setCurrentTitle] = useState(title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
 
@@ -28,7 +28,10 @@ export function Header({ title, img, imgAlt }) {
         ) : (
           <h1>{currentTitle}</h1>
         )}
-        <PencilSimple onClick={handleEditTitle} weight="fill" />
+
+        {isNotBoardsSection ? null : (
+          <PencilSimple onClick={handleEditTitle} weight="fill" />
+        )}
       </div>
       <img src="" alt="" className="img-profile" />
     </header>
