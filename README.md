@@ -21,7 +21,7 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 
 ## 🪸 Features
 
--	**Mudar tarefas arrastando-as entre as colunas:** você pode arrastar e jogar qualquer tarefa entre as colunas para atualizar o status dela. Ex: a tarefa que está na coluna *A fazer* pode ser movida para a coluna *Feito* apenas arrastando-a para esta coluna.
+-	**Atualizar tarefas arrastando-as entre as colunas:** você pode arrastar e jogar qualquer tarefa entre as colunas para atualizar o status dela. Ex: a tarefa que está na coluna *A fazer* pode ser movida para a coluna *Feito* apenas arrastando-a para esta coluna.
 
 -	**Buscar tarefas:** você pode pesquisar tarefas de acordo com seus títulos, descrições e/ou tags, e a aplicação irá filtrar elas para você.
 
