@@ -3,6 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { Search } from "../components/Search";
+import { ModalNewTask } from "../components/ModalNewTask";
 import data from "../data";
 
 import "./Board.css";
@@ -10,6 +11,7 @@ import "./Board.css";
 export default function Board() {
   const [columns, setColumns] = useState(data);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   function filterTasks(task) {
     const searchQueryLower = searchQuery.toLowerCase();
@@ -59,29 +61,38 @@ export default function Board() {
     }
   }
 
+  function openModal() {
+    setIsModalOpen(!isModalOpen);
+  }
+
   return (
     <>
       <Header title="Meu Kanban" />
-      <Search setSearchQuery={setSearchQuery} />
+      <Search onSearchQuery={setSearchQuery} />
       <main className="board-content">
         <DragDropContext onDragEnd={handleDragEnd}>
           <BoardColumn
             id="todo"
             title={"A fazer"}
             content={columns.todo.filter((task) => filterTasks(task))}
+            onOpenModal={openModal}
           />
           <BoardColumn
             id="doing"
             title={"Fazendo"}
             content={columns.doing.filter((task) => filterTasks(task))}
+            onOpenModal={openModal}
           />
           <BoardColumn
             id="done"
             title={"Feito"}
             content={columns.done.filter((task) => filterTasks(task))}
+            onOpenModal={openModal}
           />
         </DragDropContext>
       </main>
+
+      {isModalOpen && <ModalNewTask onCloseModal={openModal} />}
     </>
   );
 }

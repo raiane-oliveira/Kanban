@@ -27,6 +27,8 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 
 - **Botão de Filtrar por tags**: O usuário poderá filtrar as tarefas apenas pelas tags através do botão `Filtrar`.
 
+- **Editar o nome do Kanban na página de _Boards_**: O usuário pode mudar o nome do seu Kanban da forma como quiser.
+
 ## 💻 Rodando localmente
 
 Clone o projeto
@@ -63,8 +65,8 @@ npm run dev
 ## 🧑🏻‍💻 Futuras features
 
 - Página de _Ajustes_: o usuário poderá trocar de tema e deixar os cards das tarefas coloridos.
-- Adicionar novas tarefas e foto de perfil.
-- Editar o nome do Kanban na página de _Boards_.
+- Adicionar novas tarefas.
+- Edição do perfil
 - Clicar em uma tarefa e abrir um modal com mais detalhes sobre ela.
 - Implementação com um banco de dados
 

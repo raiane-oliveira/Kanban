@@ -10,3 +10,15 @@
   line-height: 2.6rem;
   color: var(--black);
 }
+
+.add-task-board-column {
+  margin-top: 2.4rem;
+  width: 100%;
+  border: 0;
+  background-color: var(--white-purple);
+  border-radius: 0.8rem;
+  box-shadow: 0px 4px 16px 0px #eae2fd;
+  font-size: 3rem;
+  color: #a9a9af;
+  height: 15rem;
+}

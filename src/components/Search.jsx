@@ -1,26 +1,18 @@
 import "./Search.css";
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import { useState } from "react";
-import data from "../data";
+import { tagsData } from "../data";
 
-export function Search({ setSearchQuery }) {
+export function Search({ onSearchQuery }) {
   const [inputSearch, setInputSearch] = useState("");
   const [isFilterBtnActive, setIsFilterBtnActive] = useState(false);
-
-  const newData = { ...data };
-  let tags = new Set();
-  Object.values(newData).map((column) =>
-    column.map((task) => {
-      task.tags.map((tag) => tags.add(tag));
-    })
-  );
 
   function handleChange(e) {
     const querySearch =
       e.type === "change" ? e.target.value : e.target.textContent;
 
     setInputSearch(querySearch);
-    setSearchQuery(querySearch.trim() ? querySearch : "");
+    onSearchQuery(querySearch.trim() ? querySearch : "");
     if (e.type !== "change") setIsFilterBtnActive(false);
   }
 
@@ -28,7 +20,6 @@ export function Search({ setSearchQuery }) {
     setIsFilterBtnActive(!isFilterBtnActive);
   }
 
-  let countKeySelect = 0;
   return (
     <form onSubmit={(e) => e.preventDefault()} className="search-form">
       <button type="button" onClick={handleFilterByTags} className="search-btn">
@@ -40,8 +31,8 @@ export function Search({ setSearchQuery }) {
         <div className="select-search-form">
           <h4 className="title-select-search-form">Tags</h4>
           <ul>
-            {Array.from(tags).map((tag) => (
-              <li key={`${tag}${countKeySelect++}`} onClick={handleChange}>
+            {tagsData.map((tag, index) => (
+              <li key={index} onClick={handleChange}>
                 {tag}
               </li>
             ))}

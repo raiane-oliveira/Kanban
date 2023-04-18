@@ -1,0 +1,74 @@
+.modal-new-task {
+  background-color: white;
+  border-radius: 0.8rem;
+  box-shadow: 0px 4px 16px 0px #eae2fd;
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  transform: translate(-60%, -50%);
+  padding: 4rem;
+  display: grid;
+  gap: 2.4rem;
+  min-width: 50rem;
+}
+
+.close-modal-wrapper {
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+}
+
+.title-modal-new-task {
+  color: var(--black);
+}
+
+.modal-new-task form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.modal-new-task form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--black);
+}
+
+.modal-new-task .name-task input,
+.modal-new-task .description-task textarea,
+.modal-new-task .tags-task select {
+  border: 1px solid var(--purple);
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+}
+
+.description-task textarea {
+  resize: none;
+  height: 15rem;
+}
+
+.tags-task select {
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
+.search-btn.btn-modal {
+  justify-content: center;
+  font-weight: 700;
+  margin-top: 1.2rem;
+  transition: 0.2s;
+}
+
+.search-btn.btn-modal:hover {
+  filter: brightness(0.9);
+  font-size: 1.6rem;
+}

@@ -2,7 +2,7 @@ import { Card } from "./Card";
 import "./BoardColumn.css";
 import { Droppable } from "react-beautiful-dnd";
 
-export function BoardColumn({ title, content, id }) {
+export function BoardColumn({ title, content, id, onOpenModal }) {
   return (
     <Droppable droppableId={id}>
       {(provided) => (
@@ -24,6 +24,14 @@ export function BoardColumn({ title, content, id }) {
           ))}
 
           {provided.placeholder}
+          <button
+            title="Adicionar uma nova tarefa"
+            className="add-task-board-column"
+            type="button"
+            onClick={onOpenModal}
+          >
+            +
+          </button>
         </section>
       )}
     </Droppable>
