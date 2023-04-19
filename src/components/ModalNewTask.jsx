@@ -1,11 +1,12 @@
+import "./ModalNewTask.css";
 import { XCircle, CaretDown } from "@phosphor-icons/react";
 import { useState } from "react";
 import { tagsData } from "../data";
-import "./ModalNewTask.css";
+import { useBoard } from "../context/ContextBoard";
+import { Form, Formik, useField } from "formik";
+import * as Yup from "yup";
 
-export function ModalNewTask({ onCloseModal }) {
-  const [colorSelected, setColorSelected] = useState("white");
-  const [openColorsSelect, setOpenColorsSelect] = useState(false);
+export function ModalNewTask({ closeModal }) {
   const hexColors = {
     white: "#fff",
     gray: "#EBECED",
@@ -18,92 +19,143 @@ export function ModalNewTask({ onCloseModal }) {
     pink: "#F4DFEB",
     red: "#FBE4E4",
   };
+  const { columns, setColumns, modalId } = useBoard();
+
+  let newId = 0;
+  function addTask(values, setSubmitting) {
+    setSubmitting(false);
+
+    setColumns({
+      ...columns,
+      [modalId]: [
+        ...columns[modalId],
+        {
+          id: `${values.title + ++newId}`,
+          title: values.title,
+          paragraph: values.description,
+          tags: [values.tags],
+        },
+      ],
+    });
+
+    // Clear all fields and close modal
+    setFields({
+      title: "",
+      paragraph: "",
+      tags: [],
+    });
+    closeModal();
+  }
+
+  function updateFields(e) {
+    if (e.target.name === "tags") {
+      setFields({
+        ...fields,
+        tags: [...fields.tags, e.target.value],
+      });
+      return;
+    }
+
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const initialValuesFormik = {
+    title: "",
+    description: "",
+    tags: [],
+    color: "",
+  };
+
+  const validationYup = Yup.object({
+    title: Yup.string().required("Obrigatório"),
+    description: Yup.string().required("Obrigatório"),
+    tags: Yup.array(),
+    color: Yup.string(),
+  });
 
   return (
     <div className="modal-new-task" role="modal">
       <div className="close-modal-wrapper">
-        <XCircle onClick={onCloseModal} className="close-modal" />
+        <XCircle onClick={closeModal} className="close-modal" />
       </div>
 
       <h2 className="title-modal-new-task">Adicione uma tarefa nova</h2>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <label className="name-task">
-          Título:
-          <input type="text" />
-        </label>
 
-        <label className="description-task">
-          Descrição:
-          <textarea name="description"></textarea>
-        </label>
-
-        <div className="tags-wrapper-task">
-          <label className="tags-task">
-            Tags:
-            <select name="tags">
-              {tagsData.map((tag, index) => (
-                <option key={index} value={tag}>
-                  {tag}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-
-        <div className="colors-wrapper-task">
-          <label htmlFor="colors" className="title-colors">
-            Cor:
-            <div
-              id="colors"
-              className="color-selected"
-              onClick={() => setOpenColorsSelect(!openColorsSelect)}
-              style={{ background: `${hexColors[colorSelected]}` }}
-            >
-              <span>{colorSelected}</span>
-              <CaretDown size={14} weight="bold" className="arrow-down" />
-            </div>
-          </label>
-        </div>
-
-        {openColorsSelect && (
-          <ColorsSelect
-            hexColors={hexColors}
-            onColorSelect={setColorSelected}
-            onOpenColorsSelect={setOpenColorsSelect}
-          />
-        )}
-
-        <button
-          type="submit"
-          className="search-btn btn-modal"
-          onMouseOver={() => setOpenColorsSelect(false)}
-        >
-          Adicionar
-        </button>
-      </form>
+      <Formik
+        initialValues={initialValuesFormik}
+        validationSchema={validationYup}
+        onSubmit={(values, { setSubmitting }) => addTask(values, setSubmitting)}
+      >
+        <Form>
+          <TextInputs label="Nome" name="title" type="text" />
+          <TextareaDescription label="Descrição" name="description" />
+          <CheckboxTags name="tags">Rocketseat</CheckboxTags>
+          <SelectColors label="Cor" name="colors">
+            <option value="green">Green</option>
+          </SelectColors>
+        </Form>
+      </Formik>
     </div>
   );
 }
 
-function ColorsSelect({ hexColors, onColorSelect, onOpenColorsSelect }) {
-  function handleClick(e) {
-    onColorSelect(e.target.textContent);
-    onOpenColorsSelect(false);
-  }
+function TextInputs({ label, ...props }) {
+  const [field, meta] = useField(props);
 
   return (
-    <div id="colors" className="colors-select-task">
-      {Object.keys(hexColors).map((color) => (
-        <button
-          type="button"
-          className="item-colors-select-task"
-          key={color}
-          style={{ background: `${hexColors[color]}` }}
-          onClick={handleClick}
-        >
-          {color}
-        </button>
-      ))}
+    <>
+      <label htmlFor={props.name}>{label}</label>
+      <input className="title-input-task" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error-task">{meta.error}</div>
+      ) : null}
+    </>
+  );
+}
+
+function TextareaDescription({ label, ...props }) {
+  const [field, meta] = useField(props);
+
+  return (
+    <>
+      <label htmlFor={props.name}>{label}</label>
+      <textarea name={props.name} id={props.name}></textarea>
+      {meta.touched && meta.error ? (
+        <div className="error-task">{meta.error}</div>
+      ) : null}
+    </>
+  );
+}
+
+function CheckboxTags({ children, ...props }) {
+  const [field, meta] = useField({ ...props, type: "checkbox" });
+
+  return (
+    <div className="checkbox-tags">
+      <label className="label-tags-checkbox">
+        <input type="checkbox" {...field} {...props} />
+        {children}
+      </label>
+
+      {meta.touched && meta.erro ? (
+        <div className="error-task">{meta.error}</div>
+      ) : null}
+    </div>
+  );
+}
+
+function SelectColors({ label, ...props }) {
+  const [field, meta] = useField(props);
+  return (
+    <div className="select-colors">
+      <label htmlFor={props.name}>{label}</label>
+      <select {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error-task">{meta.error}</div>
+      ) : null}
     </div>
   );
 }

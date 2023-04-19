@@ -1,9 +1,10 @@
 import "./Default.css";
-import { useState } from "react";
 
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
 import { ModalNewTask } from "../components/ModalNewTask";
+import { BoardProvider } from "../context/ContextBoard";
+import { useState } from "react";
 
 export default function Default() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,13 +18,15 @@ export default function Default() {
   }
 
   return (
-    <div className={isModalOpen ? "App modal-open" : "App"}>
-      <Sidebar />
-      <div className="content-container">
-        <Outlet context={[openModal]} />
-      </div>
+    <BoardProvider>
+      <div className={isModalOpen ? "App modal-open" : "App"}>
+        <Sidebar />
+        <div className="content-container">
+          <Outlet context={[openModal]} />
+        </div>
 
-      {isModalOpen && <ModalNewTask onCloseModal={closeModal} />}
-    </div>
+        {isModalOpen && <ModalNewTask closeModal={closeModal} />}
+      </div>
+    </BoardProvider>
   );
 }

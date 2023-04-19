@@ -1,17 +1,16 @@
+import "./Board.css";
+
 import { BoardColumn } from "../components/BoardColumn";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import { Search } from "../components/Search";
-import data from "../data";
-
-import "./Board.css";
-import { useOutletContext } from "react-router-dom";
+import { useBoard } from "../context/ContextBoard";
 
 export default function Board() {
-  const [columns, setColumns] = useState(data);
+  const { columns, setColumns } = useBoard();
   const [searchQuery, setSearchQuery] = useState("");
-  const [onOpenModal] = useOutletContext();
+  // console.log(columns.done.filter((task) => filterTasks(task)));
 
   function filterTasks(task) {
     const searchQueryLower = searchQuery.toLowerCase();
@@ -71,19 +70,16 @@ export default function Board() {
             id="todo"
             title={"A fazer"}
             content={columns.todo.filter((task) => filterTasks(task))}
-            onOpenModal={onOpenModal}
           />
           <BoardColumn
             id="doing"
             title={"Fazendo"}
             content={columns.doing.filter((task) => filterTasks(task))}
-            onOpenModal={onOpenModal}
           />
           <BoardColumn
             id="done"
             title={"Feito"}
             content={columns.done.filter((task) => filterTasks(task))}
-            onOpenModal={onOpenModal}
           />
         </DragDropContext>
       </main>

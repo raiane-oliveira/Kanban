@@ -1,8 +1,18 @@
 import "./BoardColumn.css";
+import { useOutletContext } from "react-router-dom";
 import { Card } from "./Card";
 import { Droppable } from "react-beautiful-dnd";
+import { useBoard } from "../context/ContextBoard";
 
-export function BoardColumn({ title, content, id, onOpenModal }) {
+export function BoardColumn({ title, content, id }) {
+  const { setModalId } = useBoard();
+  const [openModal] = useOutletContext();
+
+  function handleClick() {
+    openModal();
+    setModalId(id);
+  }
+
   return (
     <Droppable droppableId={id}>
       {(provided) => (
@@ -28,7 +38,7 @@ export function BoardColumn({ title, content, id, onOpenModal }) {
             title="Adicionar uma nova tarefa"
             className="add-task-board-column"
             type="button"
-            onClick={onOpenModal}
+            onClick={handleClick}
           >
             +
           </button>
