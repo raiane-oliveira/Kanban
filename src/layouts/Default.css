@@ -1,6 +1,18 @@
 .App {
   display: flex;
-  margin-top: 0.4rem;
+}
+
+.App.modal-open {
+  overflow: hidden;
+}
+
+.App.modal-open::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .content-container {
@@ -11,6 +23,7 @@
   background-color: var(--white-purple);
   border-top-left-radius: 3.2rem;
   padding: 4.8rem 3.2rem;
+  margin-top: 0.4rem;
 }
 
 @media (max-width: 640px) {

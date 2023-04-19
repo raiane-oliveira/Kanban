@@ -1,5 +1,5 @@
-import { Card } from "./Card";
 import "./BoardColumn.css";
+import { Card } from "./Card";
 import { Droppable } from "react-beautiful-dnd";
 
 export function BoardColumn({ title, content, id, onOpenModal }) {

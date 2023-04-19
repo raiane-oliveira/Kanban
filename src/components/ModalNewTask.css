@@ -1,15 +1,16 @@
 .modal-new-task {
   background-color: white;
   border-radius: 0.8rem;
-  box-shadow: 0px 4px 16px 0px #eae2fd;
+  box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.3);
   position: absolute;
-  left: 60%;
+  left: 50%;
   top: 50%;
-  transform: translate(-60%, -50%);
+  transform: translate(-50%, -50%);
   padding: 4rem;
   display: grid;
   gap: 2.4rem;
   min-width: 50rem;
+  z-index: 1; /* Fica em cima do fundo preto */
 }
 
 .close-modal-wrapper {
@@ -30,8 +31,8 @@
 }
 
 .modal-new-task form {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 
@@ -40,6 +41,12 @@
   flex-direction: column;
   gap: 0.5rem;
   color: var(--black);
+}
+
+.name-task,
+.description-task,
+.btn-modal {
+  grid-column: span 2;
 }
 
 .modal-new-task .name-task input,
@@ -59,6 +66,52 @@
   background-color: transparent;
   font-family: "Inter", sans-serif;
   font-weight: 500;
+  text-transform: capitalize;
+}
+
+.color-selected {
+  display: flex;
+  justify-content: space-between;
+
+  text-transform: capitalize;
+  border-radius: 0.5rem;
+  border: 1px solid var(--purple);
+  padding: 0.8rem 1rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.color-selected .arrow-down {
+  color: black;
+}
+
+/* Componente Select */
+.colors-select-task {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1.5rem;
+  position: absolute;
+  transform: translate(22rem, 35rem);
+
+  background-color: white;
+  border-radius: 0.8rem;
+  box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.3);
+  padding: 1.6rem 2.4rem;
+  max-width: 40rem;
+}
+
+.item-colors-select-task {
+  padding: 0.4rem 1rem;
+  border-radius: 0.8rem;
+  border: 0;
+  text-align: center;
+  text-transform: capitalize;
+  transition: 0.2s;
+}
+
+.item-colors-select-task:hover {
+  filter: brightness(0.9);
 }
 
 .search-btn.btn-modal {
