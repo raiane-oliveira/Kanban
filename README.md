@@ -3,7 +3,7 @@
   <h1>Kanban</h1>
 </div>
 
-O Kanban é um sistema de gerenciamento visual que ajuda a melhorar a produtividade e a eficiência do fluxo de trabalho de uma equipe. Ele é baseado em um quadro (físico ou digital) que representa as etapas do processo e as tarefas a serem realizadas. O Kanban permite que a equipe visualize facilmente o status de cada tarefa, identifique gargalos e priorize as atividades de forma a manter o fluxo de trabalho contínuo e eficiente.
+O Kanban é uma metodologia ágil de gerenciamento visual que ajuda a melhorar a produtividade e a eficiência do fluxo de trabalho de uma equipe. Ele é baseado em um quadro (físico ou digital) que representa as etapas do processo e as tarefas a serem realizadas. O Kanban permite que a equipe visualize facilmente o status de cada tarefa, identifique gargalos e priorize as atividades de forma a manter o fluxo de trabalho contínuo e eficiente.
 
 <img src="https://i.imgur.com/etBRqwI.png"/>
 
