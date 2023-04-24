@@ -30,6 +30,7 @@ export function BoardColumn({ title, content, id }) {
               title={data.title}
               content={data.paragraph}
               tags={data.tags}
+              color={data.hexColor}
             />
           ))}
 

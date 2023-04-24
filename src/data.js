@@ -5,6 +5,7 @@ const dataTodo = [
     paragraph:
       "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
     tags: ["rocketseat", "desafio"],
+    hexColor: "#fff",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const dataTodo = [
     paragraph:
       "Manter minha atividade na plataforma da Rocketseat para não perder a ofensiva.",
     tags: ["rocketseat"],
+    hexColor: "#fff",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const dataTodo = [
     paragraph:
       "Me alimentar, aproveitando um momento de descanso para recarregar minhas energias durante o almoço",
     tags: ["autocuidado"],
+    hexColor: "#fff",
   },
 ];
 
@@ -29,6 +32,7 @@ const dataDoing = [
     paragraph:
       "Conferir o novo projeto do #boraCodar para fazê-lo da melhor maneira possível",
     tags: ["rocketseat", "desafio"],
+    hexColor: "#fff",
   },
   {
     id: 5,
@@ -36,6 +40,7 @@ const dataDoing = [
     paragraph:
       "Sempre me lembrar de manter minha autenticidade e espalhar amor",
     tags: ["autocuidado"],
+    hexColor: "#fff",
   },
 ];
 
@@ -46,6 +51,7 @@ const dataDone = [
     paragraph:
       "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
     tags: ["rocketseat", "desafio"],
+    hexColor: "#fff",
   },
   {
     id: 7,
@@ -53,6 +59,7 @@ const dataDone = [
     paragraph:
       "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
     tags: ["rocketseat", "desafio"],
+    hexColor: "#fff",
   },
   {
     id: 8,
@@ -60,6 +67,7 @@ const dataDone = [
     paragraph:
       "Novo desafio do #boraCodar da Rocketseat, onde é proposto construir um quadro de Kanban.",
     tags: ["rocketseat", "desafio"],
+    hexColor: "#fff",
   },
 ];
 

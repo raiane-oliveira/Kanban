@@ -15,16 +15,16 @@ import * as Yup from "yup";
 
 export function ModalNewTask({ closeModal }) {
   const hexColors = {
-    white: "#FFF",
-    gray: "#EBECED",
-    brown: "#E9E5E3",
-    orange: "#FAEBDD",
-    yellow: "#FBF3DB",
-    green: "#DDEDEA",
-    blue: "#DDEBF1",
-    purple: "#EAE4F2",
-    pink: "#F4DFEB",
-    red: "#FBE4E4",
+    white: "rgba(255, 255, 255, 0.9)",
+    gray: "rgba(151,154,155,0.95)",
+    brown: "#937264",
+    orange: "#FFA344",
+    yellow: "#FFDC49",
+    green: "#4DAB9A",
+    blue: "#529CCA",
+    purple: "#9A6DD7",
+    pink: "#E255A1",
+    red: "#FF7369",
   };
   const { columns, setColumns, modalId } = useBoard();
 
@@ -40,6 +40,7 @@ export function ModalNewTask({ closeModal }) {
           title: values.title,
           paragraph: values.description,
           tags: values.tags,
+          hexColor: values.color,
         },
       ],
     });
