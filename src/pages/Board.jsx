@@ -10,7 +10,6 @@ import { useBoard } from "../context/ContextBoard";
 export default function Board() {
   const { columns, setColumns } = useBoard();
   const [searchQuery, setSearchQuery] = useState("");
-  // console.log(columns.done.filter((task) => filterTasks(task)));
 
   function filterTasks(task) {
     const searchQueryLower = searchQuery.toLowerCase();

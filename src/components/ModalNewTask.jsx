@@ -3,12 +3,19 @@ import { XCircle, CaretDown } from "@phosphor-icons/react";
 import { useState } from "react";
 import { tagsData } from "../data";
 import { useBoard } from "../context/ContextBoard";
-import { Form, Formik, useField } from "formik";
+import {
+  ErrorMessage,
+  Field,
+  FieldArray,
+  Form,
+  Formik,
+  useField,
+} from "formik";
 import * as Yup from "yup";
 
 export function ModalNewTask({ closeModal }) {
   const hexColors = {
-    white: "#fff",
+    white: "#FFF",
     gray: "#EBECED",
     brown: "#E9E5E3",
     orange: "#FAEBDD",
@@ -23,8 +30,7 @@ export function ModalNewTask({ closeModal }) {
 
   let newId = 0;
   function addTask(values, setSubmitting) {
-    setSubmitting(false);
-
+    console.log(values.description);
     setColumns({
       ...columns,
       [modalId]: [
@@ -33,33 +39,12 @@ export function ModalNewTask({ closeModal }) {
           id: `${values.title + ++newId}`,
           title: values.title,
           paragraph: values.description,
-          tags: [values.tags],
+          tags: values.tags,
         },
       ],
     });
-
-    // Clear all fields and close modal
-    setFields({
-      title: "",
-      paragraph: "",
-      tags: [],
-    });
+    setSubmitting(false);
     closeModal();
-  }
-
-  function updateFields(e) {
-    if (e.target.name === "tags") {
-      setFields({
-        ...fields,
-        tags: [...fields.tags, e.target.value],
-      });
-      return;
-    }
-
-    setFields({
-      ...fields,
-      [e.target.name]: e.target.value,
-    });
   }
 
   const initialValuesFormik = {
@@ -82,7 +67,14 @@ export function ModalNewTask({ closeModal }) {
         <XCircle onClick={closeModal} className="close-modal" />
       </div>
 
-      <h2 className="title-modal-new-task">Adicione uma tarefa nova</h2>
+      <h2 className="title-modal-new-task">
+        Adicione uma tarefa nova em:{" "}
+        {modalId === "todo"
+          ? "A fazer"
+          : modalId === "doing"
+          ? "Fazendo"
+          : "Feito"}
+      </h2>
 
       <Formik
         initialValues={initialValuesFormik}
@@ -90,72 +82,79 @@ export function ModalNewTask({ closeModal }) {
         onSubmit={(values, { setSubmitting }) => addTask(values, setSubmitting)}
       >
         <Form>
-          <TextInputs label="Nome" name="title" type="text" />
-          <TextareaDescription label="Descrição" name="description" />
-          <CheckboxTags name="tags">Rocketseat</CheckboxTags>
-          <SelectColors label="Cor" name="colors">
-            <option value="green">Green</option>
-          </SelectColors>
+          <div className="title-task">
+            <label htmlFor="title" className="title-task-label">
+              Nome
+            </label>
+            <Field autoFocus={true} name="title" className="title-task-input" />
+            <ErrorMessage
+              name="title"
+              component="span"
+              className="error-task"
+            />
+          </div>
+
+          <div className="description-task">
+            <label htmlFor="description" className="description-task-label">
+              Descrição
+            </label>
+            <Field
+              name="description"
+              as="textarea"
+              className="description-task-input"
+            />
+            <ErrorMessage
+              name="description"
+              component="span"
+              className="error-task"
+            />
+          </div>
+
+          <div className="tags-task">
+            <label className="name-tags-task">Tags</label>
+            {tagsData.map((tag) => (
+              <CheckboxTags key={tag} name="tags" value={tag} tag={tag} />
+            ))}
+          </div>
+
+          <div className="color-task">
+            <label htmlFor="color" className="color-task-label">
+              Cor
+            </label>
+            <Field name="color" as="select" className="color-task-select">
+              {Object.keys(hexColors).map((color) => (
+                <option
+                  key={color}
+                  value={hexColors[color]}
+                  style={{ background: hexColors[color] }}
+                >
+                  {color}
+                </option>
+              ))}
+            </Field>
+          </div>
+
+          <button className="search-btn btn-modal" type="submit">
+            Adicionar tarefa
+          </button>
         </Form>
       </Formik>
     </div>
   );
 }
 
-function TextInputs({ label, ...props }) {
-  const [field, meta] = useField(props);
-
-  return (
-    <>
-      <label htmlFor={props.name}>{label}</label>
-      <input className="title-input-task" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error-task">{meta.error}</div>
-      ) : null}
-    </>
-  );
-}
-
-function TextareaDescription({ label, ...props }) {
-  const [field, meta] = useField(props);
-
-  return (
-    <>
-      <label htmlFor={props.name}>{label}</label>
-      <textarea name={props.name} id={props.name}></textarea>
-      {meta.touched && meta.error ? (
-        <div className="error-task">{meta.error}</div>
-      ) : null}
-    </>
-  );
-}
-
-function CheckboxTags({ children, ...props }) {
+function CheckboxTags({ children, tag, ...props }) {
   const [field, meta] = useField({ ...props, type: "checkbox" });
-
   return (
-    <div className="checkbox-tags">
+    <>
       <label className="label-tags-checkbox">
         <input type="checkbox" {...field} {...props} />
-        {children}
+        {tag}
       </label>
 
-      {meta.touched && meta.erro ? (
-        <div className="error-task">{meta.error}</div>
-      ) : null}
-    </div>
-  );
-}
-
-function SelectColors({ label, ...props }) {
-  const [field, meta] = useField(props);
-  return (
-    <div className="select-colors">
-      <label htmlFor={props.name}>{label}</label>
-      <select {...field} {...props} />
       {meta.touched && meta.error ? (
         <div className="error-task">{meta.error}</div>
       ) : null}
-    </div>
+    </>
   );
 }

@@ -17,9 +17,17 @@
 }
 
 .card p {
+  /* Delimitar um tamanho que esconda seu texto com reticências */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   color: #756966;
   font-weight: 500;
   line-height: 1.82rem;
+  margin: 0.5rem 0;
 }
 
 .card-tags-wrapper {
