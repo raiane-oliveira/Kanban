@@ -2,10 +2,6 @@
   display: flex;
 }
 
-.App.modal-open {
-  overflow: hidden;
-}
-
 .App.modal-open::after {
   content: "";
   display: block;

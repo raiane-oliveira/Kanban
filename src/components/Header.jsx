@@ -1,4 +1,4 @@
-import { PencilSimple, User } from "@phosphor-icons/react";
+import { PencilSimple } from "@phosphor-icons/react";
 
 import "./Header.css";
 import { useState } from "react";
