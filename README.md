@@ -14,6 +14,8 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 - React
   - `react-beautiful-dnd`
   - `react-router`
+  - `Formik`
+  - `Yup`
 - [Phosphor Icons](https://phosphoricons.com/)
 - JavaScript
 - CSS
@@ -28,6 +30,24 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 - **Botão de Filtrar por tags**: O usuário poderá filtrar as tarefas apenas pelas tags através do botão `Filtrar`.
 
 - **Editar o nome do Kanban na página de _Boards_**: O usuário pode mudar o nome do seu Kanban da forma como quiser.
+
+- **Adicionar novas tarefas**: Abre um modal com um formulário para adicionar novas tarefas, podendo mudar sua cor de fundo.
+
+## 📒 Aprendizados
+
+- Biblioteca [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+- Treino com a biblioteca [react-router](https://reactrouter.com/) e estruturação de diretórios
+- Validação e criação de formulários React usando as bibliotecas `Yup` e `Formik`
+- Definir o que deve ser um componente ou não
+- Barra de pesquisa que filtra em tempo real os resultados, sem recarregar a página
+
+## 🧑🏻‍💻 Futuras features
+
+- Página de _Ajustes_: o usuário poderá trocar o tema para dark ou light mode.
+- Edição do perfil
+- Adicionar novas tags
+- Clicar em uma tarefa e abrir um modal com mais detalhes sobre ela.
+- Implementação com um banco de dados
 
 ## 💻 Rodando localmente
 
@@ -54,21 +74,6 @@ Inicie o servidor
 ```
 npm run dev
 ```
-
-## 📒 Aprendizados
-
-- Biblioteca [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
-- Treino com a biblioteca [react-router](https://reactrouter.com/) e estruturação de diretórios
-- Definir o que deve ser um componente ou não
-- Barra de pesquisa que filtra em tempo real os resultados, sem recarregar a página
-
-## 🧑🏻‍💻 Futuras features
-
-- Página de _Ajustes_: o usuário poderá trocar de tema e deixar os cards das tarefas coloridos.
-- Adicionar novas tarefas.
-- Edição do perfil
-- Clicar em uma tarefa e abrir um modal com mais detalhes sobre ela.
-- Implementação com um banco de dados
 
 ## 🪢 Design
 
