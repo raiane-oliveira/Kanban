@@ -1,0 +1,18 @@
+.box-information {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 1.5rem 1.8rem;
+
+  position: relative;
+}
+
+.label-section-profile {
+  padding: 0 0.5rem;
+  background: var(--white-purple);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--purple);
+
+  position: absolute;
+  top: -1rem;
+}

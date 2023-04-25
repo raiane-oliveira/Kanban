@@ -1,0 +1,50 @@
+.profile-content {
+  display: grid;
+  gap: 2.5rem;
+  padding: 0 2.4rem;
+}
+
+.section-user {
+  margin: 1.2rem 0;
+}
+
+.btn-settings-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+}
+
+.personal-data-profile {
+  display: grid;
+  grid-template-areas:
+    "name username"
+    "email email"
+    "dateBirth phone"
+    "password password";
+  gap: 2rem;
+}
+
+.email-profile {
+  grid-area: email;
+}
+
+.password-profile {
+  grid-area: password;
+}
+
+.subscription-data-profile {
+  display: grid;
+  grid-template-areas:
+    "plan payment"
+    "subscription subscription";
+  gap: 2rem;
+}
+
+.change-subscription-profile {
+  grid-area: subscription;
+}

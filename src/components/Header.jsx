@@ -1,14 +1,22 @@
-import { PencilSimple } from "@phosphor-icons/react";
+import { PencilSimple, User } from "@phosphor-icons/react";
 
 import "./Header.css";
 import { useState } from "react";
+import { useBoard } from "../context/ContextBoard";
+import { Link } from "react-router-dom";
 
-export function Header({ title, img, imgAlt, isNotBoardsSection }) {
+export function Header({ title, isBoardSection }) {
   const [currentTitle, setCurrentTitle] = useState(title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const { user } = useBoard();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   function handleEditTitle() {
     setIsEditingTitle(!isEditingTitle);
+  }
+
+  function updateIsProfileOpen() {
+    setIsProfileOpen(!isProfileOpen);
   }
 
   return (
@@ -29,11 +37,37 @@ export function Header({ title, img, imgAlt, isNotBoardsSection }) {
           <h1>{currentTitle}</h1>
         )}
 
-        {isNotBoardsSection ? null : (
+        {isBoardSection && (
           <PencilSimple onClick={handleEditTitle} weight="fill" />
         )}
       </div>
-      <img src="" alt="" className="img-profile" />
+
+      {user ? (
+        <div className="profile">
+          <button
+            type="button"
+            onClick={updateIsProfileOpen}
+            className="btn-open-profile"
+          >
+            <img
+              src={user.avatar}
+              alt={`${user.first_name} ${user.last_name}`}
+              className="img-profile"
+            />
+          </button>
+
+          {isProfileOpen && (
+            <div className="settings-profile">
+              <span className="name-settings-profile">
+                {user.first_name} {user.last_name}
+              </span>
+              <Link className="link-settings-profile" to={`/${user.username}`}>
+                Perfil
+              </Link>
+            </div>
+          )}
+        </div>
+      ) : null}
     </header>
   );
 }

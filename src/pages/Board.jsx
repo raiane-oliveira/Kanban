@@ -62,7 +62,7 @@ export default function Board() {
 
   return (
     <>
-      <Header title="Meu Kanban" />
+      <Header title="Meu Kanban" isBoardSection={true} />
       <Search onSearchQuery={setSearchQuery} />
       <main className="board-content">
         <DragDropContext onDragEnd={handleDragEnd}>

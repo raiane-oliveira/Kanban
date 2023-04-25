@@ -1,5 +1,6 @@
 import { XCircle } from "@phosphor-icons/react";
 import "./Modal.css";
+import { useEffect } from "react";
 
 export function Modal({ closeModal, children, title }) {
   return (
