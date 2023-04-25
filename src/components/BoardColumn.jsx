@@ -4,9 +4,8 @@ import { Card } from "./Card";
 import { Droppable } from "react-beautiful-dnd";
 import { useBoard } from "../context/ContextBoard";
 
-export function BoardColumn({ title, content, id }) {
+export function BoardColumn({ openModal, title, content, id }) {
   const { setModalId } = useBoard();
-  const [openModal] = useOutletContext();
 
   function handleClick() {
     openModal();

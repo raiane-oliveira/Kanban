@@ -1,15 +1,34 @@
 import "./Board.css";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { DragDropContext } from "react-beautiful-dnd";
 
 import { BoardColumn } from "../components/BoardColumn";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useState } from "react";
 import { Header } from "../components/Header";
 import { Search } from "../components/Search";
 import { useBoard } from "../context/ContextBoard";
+import { FormNewTask } from "../components/FormNewTask";
 
 export default function Board() {
   const { columns, setColumns } = useBoard();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.overflow = isModalOpen ? "hidden" : "visible";
+
+    if (isModalOpen) body.classList.add("modal-open");
+    else body.classList.remove("modal-open");
+  }, [isModalOpen]);
+
+  function openModal() {
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+  }
 
   function filterTasks(task) {
     const searchQueryLower = searchQuery.toLowerCase();
@@ -69,19 +88,25 @@ export default function Board() {
             id="todo"
             title={"A fazer"}
             content={columns.todo.filter((task) => filterTasks(task))}
+            openModal={openModal}
           />
           <BoardColumn
             id="doing"
             title={"Fazendo"}
             content={columns.doing.filter((task) => filterTasks(task))}
+            openModal={openModal}
           />
           <BoardColumn
             id="done"
             title={"Feito"}
             content={columns.done.filter((task) => filterTasks(task))}
+            openModal={openModal}
           />
         </DragDropContext>
       </main>
+
+      {isModalOpen &&
+        createPortal(<FormNewTask closeModal={closeModal} />, document.body)}
     </>
   );
 }
