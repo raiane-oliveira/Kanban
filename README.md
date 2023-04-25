@@ -44,6 +44,8 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 - Validação e criação de formulários React usando as bibliotecas `Yup` e `Formik`
 - Definir o que deve ser um componente ou não
 - Barra de pesquisa que filtra em tempo real os resultados, sem recarregar a página
+- API React `createPortal` que serve para renderizarmos componentes em lugares que não estão apenas no seu componente pai.
+- Criar rotas dinâmicas a partir de um username com a sintaxe `/:path` e `useParams()` do `react-router-dom`
 
 ## 🧑🏻‍💻 Futuras features
 
