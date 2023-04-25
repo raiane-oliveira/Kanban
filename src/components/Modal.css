@@ -1,0 +1,33 @@
+.modal {
+  background-color: white;
+  border-radius: 0.8rem;
+  box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 4rem;
+  display: grid;
+  gap: 2.4rem;
+  max-width: 58rem;
+  width: 100%;
+  z-index: 1; /* Fica em cima do fundo preto */
+}
+
+.close-modal-wrapper {
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+}
+
+.title-modal {
+  color: var(--black);
+  margin-top: 1rem;
+}

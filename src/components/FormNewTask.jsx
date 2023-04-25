@@ -1,19 +1,11 @@
-import "./ModalNewTask.css";
-import { XCircle, CaretDown } from "@phosphor-icons/react";
-import { useState } from "react";
+import "./FormNewTask.css";
+import { Modal } from "./Modal";
 import { tagsData } from "../data";
 import { useBoard } from "../context/ContextBoard";
-import {
-  ErrorMessage,
-  Field,
-  FieldArray,
-  Form,
-  Formik,
-  useField,
-} from "formik";
+import { ErrorMessage, Field, Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 
-export function ModalNewTask({ closeModal }) {
+export function FormNewTask({ closeModal }) {
   const hexColors = {
     white: "rgba(255, 255, 255, 0.9)",
     gray: "rgba(151,154,155,0.95)",
@@ -30,7 +22,6 @@ export function ModalNewTask({ closeModal }) {
 
   let newId = 0;
   function addTask(values, setSubmitting) {
-    console.log(values.description);
     setColumns({
       ...columns,
       [modalId]: [
@@ -62,27 +53,20 @@ export function ModalNewTask({ closeModal }) {
     color: Yup.string(),
   });
 
+  const titleSectionTranslated =
+    modalId === "todo" ? "A fazer" : modalId === "doing" ? "Fazendo" : "Feito";
+
   return (
-    <div className="modal-new-task" role="modal">
-      <div className="close-modal-wrapper">
-        <XCircle onClick={closeModal} className="close-modal" />
-      </div>
-
-      <h2 className="title-modal-new-task">
-        Adicione uma tarefa nova em:{" "}
-        {modalId === "todo"
-          ? "A fazer"
-          : modalId === "doing"
-          ? "Fazendo"
-          : "Feito"}
-      </h2>
-
+    <Modal
+      closeModal={closeModal}
+      title={`Adicione uma tarefa nova em: ${titleSectionTranslated}`}
+    >
       <Formik
         initialValues={initialValuesFormik}
         validationSchema={validationYup}
         onSubmit={(values, { setSubmitting }) => addTask(values, setSubmitting)}
       >
-        <Form>
+        <Form className="form-new-task">
           <div className="title-task">
             <label htmlFor="title" className="title-task-label">
               Nome
@@ -140,7 +124,7 @@ export function ModalNewTask({ closeModal }) {
           </button>
         </Form>
       </Formik>
-    </div>
+    </Modal>
   );
 }
 

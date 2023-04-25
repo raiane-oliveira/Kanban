@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Header } from "../components/Header";
 import { Search } from "../components/Search";
 import { useBoard } from "../context/ContextBoard";
+import { Modal } from "../components/Modal";
 
 export default function Board() {
   const { columns, setColumns } = useBoard();

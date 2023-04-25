@@ -1,5 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import "./Card.css";
+import { Modal } from "./Modal";
 
 export function Card({ id, index, title, content, tags, color }) {
   const description =
@@ -10,7 +11,7 @@ export function Card({ id, index, title, content, tags, color }) {
     );
   return (
     <Draggable key={id} draggableId={id.toString()} index={index}>
-      {(provided, snapshot) => (
+      {(provided) => (
         <div
           className="card"
           ref={provided.innerRef}

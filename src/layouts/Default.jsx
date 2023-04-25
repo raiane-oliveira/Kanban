@@ -2,7 +2,7 @@ import "./Default.css";
 
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
-import { ModalNewTask } from "../components/ModalNewTask";
+import { FormNewTask } from "../components/FormNewTask";
 import { BoardProvider } from "../context/ContextBoard";
 import { useState } from "react";
 
@@ -25,7 +25,7 @@ export default function Default() {
           <Outlet context={[openModal]} />
         </div>
 
-        {isModalOpen && <ModalNewTask closeModal={closeModal} />}
+        {isModalOpen && <FormNewTask closeModal={closeModal} />}
       </div>
     </BoardProvider>
   );
