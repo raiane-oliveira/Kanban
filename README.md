@@ -33,6 +33,10 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 
 - **Adicionar novas tarefas**: Abre um modal com um formulário para adicionar novas tarefas, podendo mudar sua cor de fundo.
 
+- **Usuário aleatório**: Toda vez que você entra na aplicação, um usuário com dados aleatórios é gerado pra você.
+
+- **Página de perfil**: Você pode ver os dados do seu perfil em uma página específica para isso.
+
 ## 📒 Aprendizados
 
 - Biblioteca [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
@@ -44,7 +48,6 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 ## 🧑🏻‍💻 Futuras features
 
 - Página de _Ajustes_: o usuário poderá trocar o tema para dark ou light mode.
-- Edição do perfil
 - Adicionar novas tags
 - Clicar em uma tarefa e abrir um modal com mais detalhes sobre ela.
 - Implementação com um banco de dados
