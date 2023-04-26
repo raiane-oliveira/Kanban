@@ -1,15 +1,17 @@
 import { PencilSimple } from "@phosphor-icons/react";
 
 import "./Header.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useBoard } from "../context/ContextBoard";
 import { Link } from "react-router-dom";
+import { useClickAway } from "react-use";
 
 export function Header({ title, isBoardSection }) {
   const [currentTitle, setCurrentTitle] = useState(title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { user } = useBoard();
+  const seeProfileRef = useRef(null);
 
   function handleEditTitle() {
     setIsEditingTitle(!isEditingTitle);
@@ -18,6 +20,11 @@ export function Header({ title, isBoardSection }) {
   function updateIsProfileOpen() {
     setIsProfileOpen(!isProfileOpen);
   }
+
+  useClickAway(seeProfileRef, () => setIsProfileOpen(false), [
+    "click",
+    "touchstart",
+  ]);
 
   return (
     <header className="header">
@@ -47,6 +54,7 @@ export function Header({ title, isBoardSection }) {
           <button
             type="button"
             onClick={updateIsProfileOpen}
+            ref={seeProfileRef}
             className="btn-open-profile"
           >
             <img

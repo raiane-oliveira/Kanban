@@ -8,13 +8,14 @@ import {
   List,
   Users,
 } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
+import { useClickAway } from "react-use";
 import { useBoard } from "../context/ContextBoard";
 
 export function Sidebar() {
-  const [showMenu, setShowMenu] = useState(false);
   const { user } = useBoard();
-  console.log(user);
+  const [showMenu, setShowMenu] = useState(false);
+  const menuBurgerRef = useRef(null);
 
   function handleMenuToggle() {
     setShowMenu(!showMenu);
@@ -24,14 +25,11 @@ export function Sidebar() {
     setShowMenu(false);
   }
 
-  useEffect(() => {
-    const contentContainer = document.querySelector(".content-container");
-    contentContainer.addEventListener("click", closeMenu);
-  }, [showMenu]);
+  useClickAway(menuBurgerRef, () => closeMenu(), ["click", "touchstart"]);
 
   return (
     <aside className={!showMenu ? `sidebar` : `sidebar active-menu`}>
-      <div className="menu-wrapper">
+      <div ref={menuBurgerRef} className="menu-wrapper">
         <button onClick={handleMenuToggle} type="button" className="menu-btn">
           <List className="menu-img" />
         </button>
@@ -40,25 +38,25 @@ export function Sidebar() {
       <div className="sidebar-content-wrapper">
         <img src={logo} alt="Logo em espiral Kanban" className="logo" />
         <nav className="sidebar-navigation">
-          <NavLink onClick={closeMenu} to="/">
+          <NavLink to="/">
             <DeviceTabletSpeaker weight="fill" />
             <span>Boards</span>
           </NavLink>
-          <a onClick={closeMenu} href="#">
+          <a href="#">
             <Users weight="fill" />
             <span>Equipes</span>
           </a>
-          <a onClick={closeMenu} href="#">
+          <a href="#">
             <FileText weight="fill" />
             <span>Relatórios</span>
           </a>
-          <NavLink onClick={closeMenu} to="/settings">
+          <NavLink to="/settings">
             <Gear />
             <span>Ajustes</span>
           </NavLink>
 
           {showMenu && (
-            <NavLink onClick={closeMenu} to="/:username">
+            <NavLink to="/:username">
               <img
                 src={user.avatar}
                 alt={`${user.firstName} ${user.lastName}`}

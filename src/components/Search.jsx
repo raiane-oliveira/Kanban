@@ -1,18 +1,13 @@
 import "./Search.css";
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
+import { useClickAway } from "react-use";
 import { tagsData } from "../data";
 
 export function Search({ onSearchQuery }) {
   const [inputSearch, setInputSearch] = useState("");
   const [isFilterBtnActive, setIsFilterBtnActive] = useState(false);
-
-  useEffect(() => {
-    const boardContent = document.querySelector(".board-content");
-    const searchBar = document.querySelector(".search-bar");
-    searchBar.addEventListener("click", () => setIsFilterBtnActive(false));
-    boardContent.addEventListener("click", () => setIsFilterBtnActive(false));
-  }, [isFilterBtnActive]);
+  const selectSearchFormRef = useRef(null);
 
   function handleChange(e) {
     const querySearch =
@@ -27,11 +22,18 @@ export function Search({ onSearchQuery }) {
     setIsFilterBtnActive(!isFilterBtnActive);
   }
 
+  // Closes filter selection when the user clicks elsewhere inside the app
+  useClickAway(selectSearchFormRef, () => setIsFilterBtnActive(false), [
+    "click",
+    "touchstart",
+  ]);
+
   return (
     <form onSubmit={(e) => e.preventDefault()} className="search-form">
       <button
         type="button"
         onClick={handleToggleBtnFilter}
+        ref={selectSearchFormRef}
         className="search-btn"
       >
         <FunnelSimple />
