@@ -5,7 +5,9 @@ import { useBoard } from "../context/ContextBoard";
 import { ErrorMessage, Field, Form, Formik, useField } from "formik";
 import * as Yup from "yup";
 
-export function FormNewTask({ closeModal }) {
+export function FormNewTask() {
+  const { onCloseModal } = useBoard();
+
   const hexColors = {
     white: "rgba(255, 255, 255, 0.9)",
     gray: "rgba(151,154,155,0.95)",
@@ -36,7 +38,7 @@ export function FormNewTask({ closeModal }) {
       ],
     });
     setSubmitting(false);
-    closeModal();
+    onCloseModal();
   }
 
   const initialValuesFormik = {
@@ -57,10 +59,7 @@ export function FormNewTask({ closeModal }) {
     modalId === "todo" ? "A fazer" : modalId === "doing" ? "Fazendo" : "Feito";
 
   return (
-    <Modal
-      closeModal={closeModal}
-      title={`Adicione uma tarefa nova em: ${titleSectionTranslated}`}
-    >
+    <Modal title={`Adicione uma tarefa nova em: ${titleSectionTranslated}`}>
       <Formik
         initialValues={initialValuesFormik}
         validationSchema={validationYup}

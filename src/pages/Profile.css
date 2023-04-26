@@ -29,6 +29,14 @@
   gap: 2rem;
 }
 
+.name-profile {
+  grid-area: name;
+}
+
+.username-profile {
+  grid-area: username;
+}
+
 .email-profile {
   grid-area: email;
 }
@@ -47,4 +55,19 @@
 
 .change-subscription-profile {
   grid-area: subscription;
+}
+
+@media (max-width: 824px) {
+  .personal-data-profile,
+  .subscription-data-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile-content {
+    padding: 0 1.4rem;
+  }
 }

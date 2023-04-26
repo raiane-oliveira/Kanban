@@ -1,11 +1,14 @@
-import { XCircle } from "@phosphor-icons/react";
 import "./Modal.css";
+import { XCircle } from "@phosphor-icons/react";
+import { useBoard } from "../context/ContextBoard";
 
-export function Modal({ closeModal, children, title }) {
+export function Modal({ children, title }) {
+  const { onCloseModal } = useBoard();
+
   return (
     <div className="modal">
       <div className="close-modal-wrapper">
-        <XCircle onClick={closeModal} className="close-modal" />
+        <XCircle onClick={onCloseModal} className="close-modal" />
       </div>
 
       <h2 className="title-modal">{title}</h2>

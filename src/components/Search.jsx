@@ -1,11 +1,18 @@
 import "./Search.css";
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { tagsData } from "../data";
 
 export function Search({ onSearchQuery }) {
   const [inputSearch, setInputSearch] = useState("");
   const [isFilterBtnActive, setIsFilterBtnActive] = useState(false);
+
+  useEffect(() => {
+    const boardContent = document.querySelector(".board-content");
+    const searchBar = document.querySelector(".search-bar");
+    searchBar.addEventListener("click", () => setIsFilterBtnActive(false));
+    boardContent.addEventListener("click", () => setIsFilterBtnActive(false));
+  }, [isFilterBtnActive]);
 
   function handleChange(e) {
     const querySearch =
@@ -16,13 +23,17 @@ export function Search({ onSearchQuery }) {
     if (e.type !== "change") setIsFilterBtnActive(false);
   }
 
-  function handleFilterByTags(e) {
+  function handleToggleBtnFilter() {
     setIsFilterBtnActive(!isFilterBtnActive);
   }
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="search-form">
-      <button type="button" onClick={handleFilterByTags} className="search-btn">
+      <button
+        type="button"
+        onClick={handleToggleBtnFilter}
+        className="search-btn"
+      >
         <FunnelSimple />
         <span>Filtrar</span>
       </button>

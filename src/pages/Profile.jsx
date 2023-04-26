@@ -1,5 +1,5 @@
-import { Header } from "../components/Header";
 import "./Profile.css";
+import { Header } from "../components/Header";
 import { Box } from "../components/Box";
 import { useBoard } from "../context/ContextBoard";
 import { CaretRight } from "@phosphor-icons/react";

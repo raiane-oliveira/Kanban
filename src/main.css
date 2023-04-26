@@ -27,7 +27,7 @@ body.modal-open::before {
   content: "";
   display: block;
   height: 1000vh;
-  width: 100vw;
+  width: 1000vw;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;

@@ -1,14 +1,13 @@
 import "./BoardColumn.css";
-import { useOutletContext } from "react-router-dom";
 import { Card } from "./Card";
 import { Droppable } from "react-beautiful-dnd";
 import { useBoard } from "../context/ContextBoard";
 
-export function BoardColumn({ openModal, title, content, id }) {
-  const { setModalId } = useBoard();
+export function BoardColumn({ title, content, id }) {
+  const { setModalId, onOpenModal } = useBoard();
 
   function handleClick() {
-    openModal();
+    onOpenModal();
     setModalId(id);
   }
 

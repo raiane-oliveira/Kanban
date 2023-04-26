@@ -31,3 +31,20 @@
   color: var(--black);
   margin-top: 1rem;
 }
+
+@media (max-width: 626px) {
+  .modal {
+    max-width: 40rem;
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .modal {
+    max-width: 30rem;
+  }
+
+  .title-modal {
+    font-size: 2rem;
+  }
+}

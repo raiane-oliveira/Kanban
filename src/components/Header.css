@@ -26,10 +26,14 @@
   cursor: pointer;
 }
 
+.title-header form {
+  width: 90%;
+}
+
 .input-edit-header {
   background-color: transparent;
   border: 0;
-  width: auto;
+  width: 100%;
 }
 
 .input-edit-header:focus {
@@ -84,11 +88,21 @@
   color: var(--purple);
 }
 
-@media (max-width: 538px) {
-  .img-profile {
+@media (max-width: 700px) {
+  .img-profile,
+  .settings-profile {
     display: none;
   }
   .title-header h1 {
     font-size: 2.8rem;
+  }
+  .input-edit-header {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    padding: 0 1.4rem;
   }
 }

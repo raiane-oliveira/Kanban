@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 export function Header({ title, isBoardSection }) {
   const [currentTitle, setCurrentTitle] = useState(title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
-  const { user } = useBoard();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const { user } = useBoard();
 
   function handleEditTitle() {
     setIsEditingTitle(!isEditingTitle);

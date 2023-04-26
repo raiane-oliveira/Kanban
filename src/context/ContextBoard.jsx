@@ -7,6 +7,7 @@ const BoardContext = createContext();
 export function BoardProvider({ children }) {
   const [columns, setColumns] = useState(data);
   const [modalId, setModalId] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -18,6 +19,14 @@ export function BoardProvider({ children }) {
     updateRandomUser();
   }, []);
 
+  function onOpenModal() {
+    setIsModalOpen(true);
+  }
+
+  function onCloseModal() {
+    setIsModalOpen(false);
+  }
+
   return (
     <BoardContext.Provider
       value={{
@@ -27,6 +36,9 @@ export function BoardProvider({ children }) {
         setModalId,
         user,
         setUser,
+        isModalOpen,
+        onOpenModal,
+        onCloseModal,
       }}
     >
       {children}

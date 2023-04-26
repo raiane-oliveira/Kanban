@@ -95,4 +95,14 @@
   .search-form {
     flex-direction: column-reverse;
   }
+
+  .select-search-form {
+    top: 12.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .search-form {
+    padding: 0 1.4rem;
+  }
 }

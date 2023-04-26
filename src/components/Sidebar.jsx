@@ -9,17 +9,24 @@ import {
   Users,
 } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
+import { useBoard } from "../context/ContextBoard";
 
 export function Sidebar() {
   const [showMenu, setShowMenu] = useState(false);
+  const { user } = useBoard();
+  console.log(user);
 
   function handleMenuToggle() {
     setShowMenu(!showMenu);
   }
 
+  function closeMenu() {
+    setShowMenu(false);
+  }
+
   useEffect(() => {
     const contentContainer = document.querySelector(".content-container");
-    contentContainer.addEventListener("click", () => setShowMenu(false));
+    contentContainer.addEventListener("click", closeMenu);
   }, [showMenu]);
 
   return (
@@ -33,22 +40,33 @@ export function Sidebar() {
       <div className="sidebar-content-wrapper">
         <img src={logo} alt="Logo em espiral Kanban" className="logo" />
         <nav className="sidebar-navigation">
-          <NavLink onClick={handleMenuToggle} to="/">
+          <NavLink onClick={closeMenu} to="/">
             <DeviceTabletSpeaker weight="fill" />
             <span>Boards</span>
           </NavLink>
-          <a onClick={handleMenuToggle} href="#">
+          <a onClick={closeMenu} href="#">
             <Users weight="fill" />
             <span>Equipes</span>
           </a>
-          <a onClick={handleMenuToggle} href="#">
+          <a onClick={closeMenu} href="#">
             <FileText weight="fill" />
             <span>Relatórios</span>
           </a>
-          <NavLink onClick={handleMenuToggle} to="/settings">
+          <NavLink onClick={closeMenu} to="/settings">
             <Gear />
             <span>Ajustes</span>
           </NavLink>
+
+          {showMenu && (
+            <NavLink onClick={closeMenu} to="/:username">
+              <img
+                src={user.avatar}
+                alt={`${user.firstName} ${user.lastName}`}
+                className="avatar-profile"
+              />
+              <span>Perfil</span>
+            </NavLink>
+          )}
         </nav>
       </div>
     </aside>

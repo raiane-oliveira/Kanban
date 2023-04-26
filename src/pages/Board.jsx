@@ -10,9 +10,8 @@ import { useBoard } from "../context/ContextBoard";
 import { FormNewTask } from "../components/FormNewTask";
 
 export default function Board() {
-  const { columns, setColumns } = useBoard();
+  const { columns, setColumns, isModalOpen } = useBoard();
   const [searchQuery, setSearchQuery] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -21,14 +20,6 @@ export default function Board() {
     if (isModalOpen) body.classList.add("modal-open");
     else body.classList.remove("modal-open");
   }, [isModalOpen]);
-
-  function openModal() {
-    setIsModalOpen(true);
-  }
-
-  function closeModal() {
-    setIsModalOpen(false);
-  }
 
   function filterTasks(task) {
     const searchQueryLower = searchQuery.toLowerCase();
@@ -88,25 +79,21 @@ export default function Board() {
             id="todo"
             title={"A fazer"}
             content={columns.todo.filter((task) => filterTasks(task))}
-            openModal={openModal}
           />
           <BoardColumn
             id="doing"
             title={"Fazendo"}
             content={columns.doing.filter((task) => filterTasks(task))}
-            openModal={openModal}
           />
           <BoardColumn
             id="done"
             title={"Feito"}
             content={columns.done.filter((task) => filterTasks(task))}
-            openModal={openModal}
           />
         </DragDropContext>
       </main>
 
-      {isModalOpen &&
-        createPortal(<FormNewTask closeModal={closeModal} />, document.body)}
+      {isModalOpen && createPortal(<FormNewTask />, document.body)}
     </>
   );
 }
