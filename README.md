@@ -14,6 +14,7 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 - React
   - `react-beautiful-dnd`
   - `react-router`
+  - `react-use`
   - `Formik`
   - `Yup`
 - [Phosphor Icons](https://phosphoricons.com/)
@@ -42,7 +43,7 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 - Biblioteca [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
 - Treino com a biblioteca [react-router](https://reactrouter.com/) e estruturação de diretórios
 - Validação e criação de formulários React usando as bibliotecas `Yup` e `Formik`
-- Definir o que deve ser um componente ou não
+- Fechar modals quando o usuário clica em qualquer outro lugar da aplicação usando a biblioteca `react-use`, com o hook `useClickAway`.
 - Barra de pesquisa que filtra em tempo real os resultados, sem recarregar a página
 - API React `createPortal` que serve para renderizarmos componentes em lugares que não estão apenas no seu componente pai.
 - Criar rotas dinâmicas a partir de um username com a sintaxe `/:path` e `useParams()` do `react-router-dom`
