@@ -17,7 +17,6 @@ export function BoardProvider({ children }) {
 
     updateRandomUser();
   }, []);
-  console.log(user);
 
   return (
     <BoardContext.Provider

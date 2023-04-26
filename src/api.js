@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseURL = "https://random-data-api.com/api/v2/";
+const baseURL = "https://random-data-api.com/api/v2/";
 
 export async function getRandomUser() {
   const response = await axios
