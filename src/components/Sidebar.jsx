@@ -1,3 +1,6 @@
+import "./Sidebar.css";
+import logo from "../assets/logo.svg";
+import { NavLink } from "react-router-dom";
 import {
   DeviceTabletSpeaker,
   FileText,
@@ -5,10 +8,6 @@ import {
   List,
   Users,
 } from "@phosphor-icons/react";
-import logo from "../assets/logo.svg";
-
-import "./Sidebar.css";
-import { NavLink } from "react-router-dom";
 
 export function Sidebar() {
   return (

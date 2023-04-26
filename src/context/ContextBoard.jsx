@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import data from "../data";
 import { getRandomUser } from "../api";
+import data from "../data";
 
 const BoardContext = createContext();
 

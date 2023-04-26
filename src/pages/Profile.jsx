@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { Header } from "../components/Header";
 import "./Profile.css";
 import { Box } from "../components/Box";
@@ -6,7 +5,6 @@ import { useBoard } from "../context/ContextBoard";
 import { CaretRight } from "@phosphor-icons/react";
 
 export default function Profile() {
-  const { username } = useParams();
   const { user } = useBoard();
   return (
     <>

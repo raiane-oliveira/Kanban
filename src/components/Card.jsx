@@ -1,6 +1,5 @@
-import { Draggable } from "react-beautiful-dnd";
 import "./Card.css";
-import { Modal } from "./Modal";
+import { Draggable } from "react-beautiful-dnd";
 
 export function Card({ id, index, title, content, tags, color }) {
   const description =
