@@ -19,7 +19,9 @@ export function BoardColumn({ title, content, id }) {
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          <h3>{title}</h3>
+          <h3>
+            {title} <span className="length-tasks">({content.length})</span>
+          </h3>
           {content.map((data, index) => (
             <Card
               key={data.id}

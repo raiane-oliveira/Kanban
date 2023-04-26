@@ -11,6 +11,12 @@
   color: var(--black);
 }
 
+.length-tasks {
+  color: #756966;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
 .add-task-board-column {
   margin-top: 2.4rem;
   width: 100%;
