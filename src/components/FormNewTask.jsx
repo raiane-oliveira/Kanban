@@ -24,7 +24,7 @@ export function FormNewTask() {
 
   let newId = 0;
   function addTask(values, setSubmitting) {
-    setColumns({
+    const nextColumns = {
       ...columns,
       [modalId]: [
         ...columns[modalId],
@@ -36,7 +36,10 @@ export function FormNewTask() {
           hexColor: values.color,
         },
       ],
-    });
+    };
+
+    nextColumns[modalId].reverse();
+    setColumns(nextColumns);
     setSubmitting(false);
     onCloseModal();
   }
