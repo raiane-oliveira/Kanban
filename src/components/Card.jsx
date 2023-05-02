@@ -6,17 +6,25 @@ import { Trash } from "@phosphor-icons/react";
 
 export function Card({ id, index, title, content, tags, color, columnId }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const { columns, setColumns, setColumnName, columnName } = useBoard();
+  const { columns, dispatch, setColumnName, columnName } = useBoard();
 
+  // function deleteTask() {
+  //   const filteredTasks = columns[columnName].filter(
+  //     (column) => column.id !== id
+  //   );
+  //   const nextTasks = {
+  //     ...columns,
+  //     [columnName]: [...filteredTasks],
+  //   };
+  //   setColumns(nextTasks);
+  // }
   function deleteTask() {
-    const filteredTasks = columns[columnName].filter(
-      (column) => column.id !== id
-    );
-    const nextTasks = {
-      ...columns,
-      [columnName]: [...filteredTasks],
-    };
-    setColumns(nextTasks);
+    dispatch({
+      type: "deleted",
+      id: id,
+      tasks: columns,
+      columnName: columnName,
+    });
   }
 
   const description =

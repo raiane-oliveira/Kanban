@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export function FormNewTask() {
   const [createdId, setCreatedId] = useState(1);
-  const { onCloseModal } = useBoard();
+  const { onCloseModal, dispatch, columns, columnName } = useBoard();
 
   const hexColors = {
     white: "rgba(255, 255, 255, 0.9)",
@@ -22,25 +22,16 @@ export function FormNewTask() {
     pink: "#E255A1",
     red: "#FF7369",
   };
-  const { columns, setColumns, columnName } = useBoard();
 
-  function addTask(values, setSubmitting) {
-    const nextColumns = {
-      ...columns,
-      [columnName]: [
-        ...columns[columnName],
-        {
-          id: `${values.title}${createdId}`,
-          title: values.title,
-          paragraph: values.description,
-          tags: values.tags,
-          hexColor: values.color,
-        },
-      ],
-    };
+  function addTask(values) {
+    dispatch({
+      type: "added",
+      tasks: columns,
+      values: values,
+      columnName: columnName,
+      createdId: createdId,
+    });
 
-    setColumns(nextColumns);
-    setSubmitting(false);
     setCreatedId(createdId + 1);
     onCloseModal();
   }
@@ -71,7 +62,7 @@ export function FormNewTask() {
       <Formik
         initialValues={initialValuesFormik}
         validationSchema={validationYup}
-        onSubmit={(values, { setSubmitting }) => addTask(values, setSubmitting)}
+        onSubmit={(values) => addTask(values)}
       >
         <Form className="form-new-task">
           <div className="title-task">

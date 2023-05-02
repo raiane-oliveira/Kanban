@@ -10,7 +10,7 @@ import { useBoard } from "../context/ContextBoard";
 import { FormNewTask } from "../components/FormNewTask";
 
 export default function Board() {
-  const { columns, setColumns, isModalOpen } = useBoard();
+  const { columns, dispatch, isModalOpen } = useBoard();
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -32,41 +32,11 @@ export default function Board() {
   }
 
   function handleDragEnd(result) {
-    const { destination, source } = result;
-
-    if (!destination) return;
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    const sourceNameList = source.droppableId;
-    const destinationNameList = destination.droppableId;
-
-    const sourceList = [...columns[sourceNameList]];
-    const destinationList = [...columns[destinationNameList]];
-
-    if (sourceNameList === destinationNameList) {
-      const [removedItem] = sourceList.splice(source.index, 1);
-      sourceList.splice(destination.index, 0, removedItem);
-
-      setColumns({
-        ...columns,
-        [sourceNameList]: sourceList,
-      });
-    } else {
-      const [removedItem] = sourceList.splice(source.index, 1);
-      destinationList.splice(destination.index, 0, removedItem);
-
-      setColumns({
-        ...columns,
-        [sourceNameList]: sourceList,
-        [destinationNameList]: destinationList,
-      });
-    }
+    dispatch({
+      type: "dragEnd",
+      result: result,
+      tasks: columns,
+    });
   }
 
   return (
