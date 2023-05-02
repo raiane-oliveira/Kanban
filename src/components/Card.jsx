@@ -20,8 +20,10 @@ export function Card({ id, index, title, content, tags, color, columnId }) {
   }
 
   const description =
-    color !== "#fff" ? (
-      <p style={{ color: "#fff" }}>{content}</p>
+    color !== "rgba(255, 255, 255, 0.9)" &&
+    color !== "#fff" &&
+    color !== "#FFDC49" ? (
+      <p style={{ color: "#EBECED" }}>{content}</p>
     ) : (
       <p>{content}</p>
     );

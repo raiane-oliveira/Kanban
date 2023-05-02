@@ -40,6 +40,7 @@
 .card-tags-wrapper {
   display: flex;
   gap: 0.8rem;
+  flex-wrap: wrap;
   grid-area: tags;
 }
 
@@ -55,6 +56,7 @@
 .wrapper-trash {
   grid-area: trash;
   justify-self: end;
+  align-self: end;
   height: 2.2rem;
 }
 

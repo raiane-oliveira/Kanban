@@ -4,8 +4,10 @@ import { tagsData } from "../data";
 import { useBoard } from "../context/ContextBoard";
 import { ErrorMessage, Field, Form, Formik, useField } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
 
 export function FormNewTask() {
+  const [createdId, setCreatedId] = useState(1);
   const { onCloseModal } = useBoard();
 
   const hexColors = {
@@ -22,14 +24,13 @@ export function FormNewTask() {
   };
   const { columns, setColumns, columnName } = useBoard();
 
-  let newId = 0;
   function addTask(values, setSubmitting) {
     const nextColumns = {
       ...columns,
       [columnName]: [
         ...columns[columnName],
         {
-          id: `${values.title + ++newId}`,
+          id: `${values.title}${createdId}`,
           title: values.title,
           paragraph: values.description,
           tags: values.tags,
@@ -38,9 +39,9 @@ export function FormNewTask() {
       ],
     };
 
-    nextColumns[columnName].reverse();
     setColumns(nextColumns);
     setSubmitting(false);
+    setCreatedId(createdId + 1);
     onCloseModal();
   }
 
@@ -48,7 +49,7 @@ export function FormNewTask() {
     title: "",
     description: "",
     tags: [],
-    color: "",
+    color: hexColors.white,
   };
 
   const validationYup = Yup.object({
