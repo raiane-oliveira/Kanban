@@ -7,6 +7,10 @@
   font-size: 1.4rem;
 
   display: grid;
+  grid-template-areas:
+    "title title"
+    "desc desc"
+    "tags trash";
   gap: 1rem;
 }
 
@@ -14,6 +18,7 @@
   color: var(--black);
   font-weight: 700;
   line-height: 1.82rem;
+  grid-area: title;
 }
 
 .card p {
@@ -23,6 +28,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  grid-area: desc;
 
   color: #756966;
   font-weight: 500;
@@ -34,6 +40,7 @@
 .card-tags-wrapper {
   display: flex;
   gap: 0.8rem;
+  grid-area: tags;
 }
 
 .card-tags-wrapper .card-tag {
@@ -43,4 +50,16 @@
   color: var(--purple);
   font-size: 1.1rem;
   font-weight: 500;
+}
+
+.wrapper-trash {
+  grid-area: trash;
+  justify-self: end;
+  height: 2.2rem;
+}
+
+.trash {
+  width: 2.2rem;
+  height: 2.2rem;
+  pointer-events: none;
 }

@@ -6,7 +6,7 @@ const BoardContext = createContext();
 
 export function BoardProvider({ children }) {
   const [columns, setColumns] = useState(data);
-  const [modalId, setModalId] = useState("");
+  const [columnName, setColumnName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState("");
 
@@ -32,8 +32,8 @@ export function BoardProvider({ children }) {
       value={{
         columns,
         setColumns,
-        modalId,
-        setModalId,
+        columnName,
+        setColumnName,
         user,
         setUser,
         isModalOpen,

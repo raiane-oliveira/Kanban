@@ -1,13 +1,31 @@
 import "./Card.css";
+import { useState } from "react";
+import { useBoard } from "../context/ContextBoard";
 import { Draggable } from "react-beautiful-dnd";
+import { Trash } from "@phosphor-icons/react";
 
-export function Card({ id, index, title, content, tags, color }) {
+export function Card({ id, index, title, content, tags, color, columnId }) {
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const { columns, setColumns, setColumnName, columnName } = useBoard();
+
+  function deleteTask() {
+    const filteredTasks = columns[columnName].filter(
+      (column) => column.id !== id
+    );
+    const nextTasks = {
+      ...columns,
+      [columnName]: [...filteredTasks],
+    };
+    setColumns(nextTasks);
+  }
+
   const description =
     color !== "#fff" ? (
       <p style={{ color: "#fff" }}>{content}</p>
     ) : (
       <p>{content}</p>
     );
+
   return (
     <Draggable key={id} draggableId={id.toString()} index={index}>
       {(provided) => (
@@ -17,6 +35,11 @@ export function Card({ id, index, title, content, tags, color }) {
           {...provided.draggableProps}
           style={{ ...provided.draggableProps.style, background: `${color}` }}
           {...provided.dragHandleProps}
+          onMouseOver={() => {
+            setIsMouseOver(true);
+            setColumnName(columnId);
+          }}
+          onMouseLeave={() => setIsMouseOver(false)}
         >
           <h4 className="card-title">{title}</h4>
           {description}
@@ -27,6 +50,12 @@ export function Card({ id, index, title, content, tags, color }) {
               </span>
             ))}
           </div>
+
+          {isMouseOver && (
+            <div onClick={deleteTask} className="wrapper-trash">
+              <Trash className="trash" color="#ed4337" weight="fill" />
+            </div>
+          )}
         </div>
       )}
     </Draggable>

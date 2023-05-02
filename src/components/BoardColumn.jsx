@@ -4,11 +4,11 @@ import { Droppable } from "react-beautiful-dnd";
 import { useBoard } from "../context/ContextBoard";
 
 export function BoardColumn({ title, content, id }) {
-  const { setModalId, onOpenModal } = useBoard();
+  const { setColumnName, onOpenModal } = useBoard();
 
   function handleClick() {
     onOpenModal();
-    setModalId(id);
+    setColumnName(id);
   }
 
   return (
@@ -26,6 +26,7 @@ export function BoardColumn({ title, content, id }) {
             <Card
               key={data.id}
               id={data.id}
+              columnId={id}
               index={index}
               title={data.title}
               content={data.paragraph}

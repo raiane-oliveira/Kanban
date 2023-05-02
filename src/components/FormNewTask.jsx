@@ -20,14 +20,14 @@ export function FormNewTask() {
     pink: "#E255A1",
     red: "#FF7369",
   };
-  const { columns, setColumns, modalId } = useBoard();
+  const { columns, setColumns, columnName } = useBoard();
 
   let newId = 0;
   function addTask(values, setSubmitting) {
     const nextColumns = {
       ...columns,
-      [modalId]: [
-        ...columns[modalId],
+      [columnName]: [
+        ...columns[columnName],
         {
           id: `${values.title + ++newId}`,
           title: values.title,
@@ -38,7 +38,7 @@ export function FormNewTask() {
       ],
     };
 
-    nextColumns[modalId].reverse();
+    nextColumns[columnName].reverse();
     setColumns(nextColumns);
     setSubmitting(false);
     onCloseModal();
@@ -59,7 +59,11 @@ export function FormNewTask() {
   });
 
   const titleSectionTranslated =
-    modalId === "todo" ? "A fazer" : modalId === "doing" ? "Fazendo" : "Feito";
+    columnName === "todo"
+      ? "A fazer"
+      : columnName === "doing"
+      ? "Fazendo"
+      : "Feito";
 
   return (
     <Modal title={`Adicione uma tarefa nova em: ${titleSectionTranslated}`}>
