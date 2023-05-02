@@ -28,11 +28,9 @@ Visando isso, desenvolvi o meu próprio Kanban digital para me ajudar a organiza
 
 - **Buscar tarefas:** você pode pesquisar tarefas de acordo com seus títulos, descrições e/ou tags, e a aplicação irá filtrar elas para você.
 
-- **Botão de Filtrar por tags**: O usuário poderá filtrar as tarefas apenas pelas tags através do botão `Filtrar`.
-
 - **Editar o nome do Kanban na página de _Boards_**: O usuário pode mudar o nome do seu Kanban da forma como quiser.
 
-- **Adicionar novas tarefas**: Abre um modal com um formulário para adicionar novas tarefas, podendo mudar sua cor de fundo.
+- **Adicionar e remover tarefas**: Abre um modal com um formulário para adicionar novas tarefas, podendo mudar sua cor de fundo. Além disso, o usuário pode deletar suas tarefas.
 
 - **Usuário aleatório**: Toda vez que você entra na aplicação, um usuário com dados aleatórios é gerado pra você.
 
