@@ -35,7 +35,6 @@ export default function Board() {
     dispatch({
       type: "dragEnd",
       result: result,
-      tasks: columns,
     });
   }
 

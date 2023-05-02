@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export function FormNewTask() {
   const [createdId, setCreatedId] = useState(1);
-  const { onCloseModal, dispatch, columns, columnName } = useBoard();
+  const { onCloseModal, dispatch, columnName } = useBoard();
 
   const hexColors = {
     white: "rgba(255, 255, 255, 0.9)",
@@ -26,7 +26,6 @@ export function FormNewTask() {
   function addTask(values) {
     dispatch({
       type: "added",
-      tasks: columns,
       values: values,
       columnName: columnName,
       createdId: createdId,

@@ -8,21 +8,10 @@ export function Card({ id, index, title, content, tags, color, columnId }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const { columns, dispatch, setColumnName, columnName } = useBoard();
 
-  // function deleteTask() {
-  //   const filteredTasks = columns[columnName].filter(
-  //     (column) => column.id !== id
-  //   );
-  //   const nextTasks = {
-  //     ...columns,
-  //     [columnName]: [...filteredTasks],
-  //   };
-  //   setColumns(nextTasks);
-  // }
   function deleteTask() {
     dispatch({
       type: "deleted",
       id: id,
-      tasks: columns,
       columnName: columnName,
     });
   }
