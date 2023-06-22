@@ -1,39 +1,35 @@
-import "./FormNewTask.css";
-import { Modal } from "./Modal";
-import { tagsData } from "../data";
-import { useBoard } from "../context/ContextBoard";
-import { ErrorMessage, Field, Form, Formik, useField } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { ErrorMessage, Field, Form, Formik, useField } from "formik";
+import { useBoard } from "../context/ContextBoard";
+import "./FormNewTask.css";
 
-export function FormNewTask() {
-  const [createdId, setCreatedId] = useState(1);
-  const { onCloseModal, dispatch, columnName } = useBoard();
+const validationSchema = Yup.object({
+  title: Yup.string().required("Obrigatório"),
+  description: Yup.string().required("Obrigatório"),
+  tags: Yup.array(),
+  color: Yup.string(),
+});
 
-  const hexColors = {
-    white: "rgba(255, 255, 255, 0.9)",
-    gray: "rgba(151,154,155,0.95)",
-    brown: "#937264",
-    orange: "#FFA344",
-    yellow: "#FFDC49",
-    green: "#4DAB9A",
-    blue: "#529CCA",
-    purple: "#9A6DD7",
-    pink: "#E255A1",
-    red: "#FF7369",
-  };
+const hexColors = {
+  white: "rgba(255, 255, 255, 0.9)",
+  gray: "rgba(151,154,155,0.95)",
+  brown: "#937264",
+  orange: "#FFA344",
+  yellow: "#FFDC49",
+  green: "#4DAB9A",
+  blue: "#529CCA",
+  purple: "#9A6DD7",
+  pink: "#E255A1",
+  red: "#FF7369",
+};
 
-  function addTask(values) {
-    dispatch({
-      type: "added",
-      values: values,
-      columnName: columnName,
-      createdId: createdId,
-    });
-
-    setCreatedId(createdId + 1);
-    onCloseModal();
-  }
+export function FormNewTask({ onSubmit }) {
+  const { columns } = useBoard();
+  let tags = new Set();
+  Object.values(columns).map((column) =>
+    column.map((task) => task.tags.map((tag) => tags.add(tag)))
+  );
+  tags = Array.from(tags);
 
   const initialValuesFormik = {
     title: "",
@@ -41,87 +37,66 @@ export function FormNewTask() {
     tags: [],
     color: hexColors.white,
   };
-
-  const validationYup = Yup.object({
-    title: Yup.string().required("Obrigatório"),
-    description: Yup.string().required("Obrigatório"),
-    tags: Yup.array(),
-    color: Yup.string(),
-  });
-
-  const titleSectionTranslated =
-    columnName === "todo"
-      ? "A fazer"
-      : columnName === "doing"
-      ? "Fazendo"
-      : "Feito";
-
   return (
-    <Modal title={`Adicione uma tarefa nova em: ${titleSectionTranslated}`}>
-      <Formik
-        initialValues={initialValuesFormik}
-        validationSchema={validationYup}
-        onSubmit={(values) => addTask(values)}
-      >
-        <Form className="form-new-task">
-          <div className="title-task">
-            <label htmlFor="title" className="title-task-label">
-              Nome
-            </label>
-            <Field autoFocus={true} name="title" className="title-task-input" />
-            <ErrorMessage
-              name="title"
-              component="span"
-              className="error-task"
-            />
-          </div>
+    <Formik
+      initialValues={initialValuesFormik}
+      validationSchema={validationSchema}
+      onSubmit={(values) => onSubmit(values)}
+    >
+      <Form className="form-new-task">
+        <div className="title-task">
+          <label htmlFor="title" className="title-task-label">
+            Nome
+          </label>
+          <Field autoFocus={true} name="title" className="title-task-input" />
+          <ErrorMessage name="title" component="span" className="error-task" />
+        </div>
 
-          <div className="description-task">
-            <label htmlFor="description" className="description-task-label">
-              Descrição
-            </label>
-            <Field
-              name="description"
-              as="textarea"
-              className="description-task-input"
-            />
-            <ErrorMessage
-              name="description"
-              component="span"
-              className="error-task"
-            />
-          </div>
+        <div className="description-task">
+          <label htmlFor="description" className="description-task-label">
+            Descrição
+          </label>
+          <Field
+            name="description"
+            as="textarea"
+            className="description-task-input"
+          />
+          <ErrorMessage
+            name="description"
+            component="span"
+            className="error-task"
+          />
+        </div>
 
-          <div className="tags-task">
-            <label className="name-tags-task">Tags</label>
-            {tagsData.map((tag) => (
-              <CheckboxTags key={tag} name="tags" value={tag} tag={tag} />
+        <div className="tags-task">
+          <label className="name-tags-task">Tags</label>
+          {tags.map((tag) => (
+            <CheckboxTags key={tag} name="tags" value={tag} tag={tag} />
+          ))}
+        </div>
+
+        <div className="color-task">
+          <label htmlFor="color" className="color-task-label">
+            Cor
+          </label>
+          <Field name="color" as="select" className="color-task-select">
+            {Object.keys(hexColors).map((color) => (
+              <option
+                key={color}
+                value={hexColors[color]}
+                style={{ background: hexColors[color] }}
+              >
+                {color}
+              </option>
             ))}
-          </div>
+          </Field>
+        </div>
 
-          <div className="color-task">
-            <label htmlFor="color" className="color-task-label">
-              Cor
-            </label>
-            <Field name="color" as="select" className="color-task-select">
-              {Object.keys(hexColors).map((color) => (
-                <option
-                  key={color}
-                  value={hexColors[color]}
-                  style={{ background: hexColors[color] }}
-                >
-                  {color}
-                </option>
-              ))}
-            </Field>
-          </div>
-
-          <button className="search-btn btn-modal" type="submit">
-            Adicionar tarefa
-          </button>
-        </Form>
-      </Formik>
-    </Modal>
+        <button className="search-btn btn-modal" type="submit">
+          Adicionar tarefa
+        </button>
+      </Form>
+    </Formik>
   );
 }
 

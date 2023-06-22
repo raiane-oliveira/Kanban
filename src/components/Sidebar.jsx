@@ -29,15 +29,23 @@ export function Sidebar() {
 
   return (
     <aside className={!showMenu ? `sidebar` : `sidebar active-menu`}>
-      <div ref={menuBurgerRef} className="menu-wrapper">
-        <button onClick={handleMenuToggle} type="button" className="menu-btn">
-          <List className="menu-img" />
-        </button>
-      </div>
+      <button
+        type="button"
+        aria-controls="menu"
+        aria-haspopup="true"
+        aria-label={!showMenu ? "Abrir menu" : "Fechar menu"}
+        aria-expanded={showMenu ? true : false}
+        aria-labelledby="nav"
+        ref={menuBurgerRef}
+        className="menu-wrapper menu-btn"
+        onClick={handleMenuToggle}
+      >
+        <List className="menu-img" />
+      </button>
 
       <div className="sidebar-content-wrapper">
         <img src={logo} alt="Logo em espiral Kanban" className="logo" />
-        <nav className="sidebar-navigation">
+        <nav id="nav" className="sidebar-navigation">
           <NavLink to="/">
             <DeviceTabletSpeaker weight="fill" />
             <span>Boards</span>

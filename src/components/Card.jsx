@@ -1,20 +1,10 @@
-import "./Card.css";
 import { useState } from "react";
-import { useBoard } from "../context/ContextBoard";
 import { Draggable } from "react-beautiful-dnd";
 import { Trash } from "@phosphor-icons/react";
+import "./Card.css";
 
-export function Card({ id, index, title, content, tags, color, columnId }) {
+export function Card({ id, index, title, content, tags, color, onDeleteTask }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const { columns, dispatch, setColumnName, columnName } = useBoard();
-
-  function deleteTask() {
-    dispatch({
-      type: "deleted",
-      id: id,
-      columnName: columnName,
-    });
-  }
 
   const description =
     color !== "rgba(255, 255, 255, 0.9)" &&
@@ -36,11 +26,10 @@ export function Card({ id, index, title, content, tags, color, columnId }) {
           {...provided.dragHandleProps}
           onMouseOver={() => {
             setIsMouseOver(true);
-            setColumnName(columnId);
           }}
           onMouseLeave={() => setIsMouseOver(false)}
         >
-          <h4 className="card-title">{title}</h4>
+          <h3 className="card-title">{title}</h3>
           {description}
           <div className="card-tags-wrapper">
             {tags.map((tag, index) => (
@@ -51,7 +40,7 @@ export function Card({ id, index, title, content, tags, color, columnId }) {
           </div>
 
           {isMouseOver && (
-            <div onClick={deleteTask} className="wrapper-trash">
+            <div onClick={() => onDeleteTask(id)} className="wrapper-trash">
               <Trash className="trash" color="#ed4337" weight="fill" />
             </div>
           )}

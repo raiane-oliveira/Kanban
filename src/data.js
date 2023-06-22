@@ -77,14 +77,4 @@ const data = {
   done: dataDone,
 };
 
-let tags = new Set();
-
-Object.values(data).map((column) =>
-  column.map((task) => {
-    task.tags.map((tag) => tags.add(tag));
-  })
-);
-
-export const tagsData = Array.from(tags);
-
 export default data;

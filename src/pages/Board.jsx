@@ -1,25 +1,15 @@
 import "./Board.css";
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { BoardColumn } from "../components/BoardColumn";
 import { Header } from "../components/Header";
 import { Search } from "../components/Search";
 import { useBoard } from "../context/ContextBoard";
-import { FormNewTask } from "../components/FormNewTask";
 
 export default function Board() {
-  const { columns, dispatch, isModalOpen } = useBoard();
+  const { columns, dispatch } = useBoard();
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.overflow = isModalOpen ? "hidden" : "visible";
-
-    if (isModalOpen) body.classList.add("modal-open");
-    else body.classList.remove("modal-open");
-  }, [isModalOpen]);
 
   function filterTasks(task) {
     const searchQueryLower = searchQuery.toLowerCase();
@@ -38,10 +28,14 @@ export default function Board() {
     });
   }
 
+  function handleSearchQuery(query) {
+    setSearchQuery(query);
+  }
+
   return (
     <>
       <Header title="Meu Kanban" isBoardSection={true} />
-      <Search onSearchQuery={setSearchQuery} />
+      <Search onSearchQuery={handleSearchQuery} />
       <main className="board-content">
         <DragDropContext onDragEnd={handleDragEnd}>
           <BoardColumn
@@ -61,8 +55,6 @@ export default function Board() {
           />
         </DragDropContext>
       </main>
-
-      {isModalOpen && createPortal(<FormNewTask />, document.body)}
     </>
   );
 }

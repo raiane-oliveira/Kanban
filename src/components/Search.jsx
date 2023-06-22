@@ -2,20 +2,27 @@ import "./Search.css";
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import { useState, useRef } from "react";
 import { useClickAway } from "react-use";
-import { tagsData } from "../data";
+import { useBoard } from "../context/ContextBoard";
 
 export function Search({ onSearchQuery }) {
   const [inputSearch, setInputSearch] = useState("");
   const [isFilterBtnActive, setIsFilterBtnActive] = useState(false);
   const selectSearchFormRef = useRef(null);
+  const { columns } = useBoard();
 
-  function handleChange(e) {
+  // Block duplicate tags
+  let tags = new Set();
+  Object.values(columns).map((column) =>
+    column.map((task) => task.tags.map((tag) => tags.add(tag)))
+  );
+  tags = Array.from(tags);
+
+  function handleQuery(e) {
     const querySearch =
       e.type === "change" ? e.target.value : e.target.textContent;
 
     setInputSearch(querySearch);
     onSearchQuery(querySearch.trim() ? querySearch : "");
-    if (e.type !== "change") setIsFilterBtnActive(false);
   }
 
   function handleToggleBtnFilter() {
@@ -44,8 +51,8 @@ export function Search({ onSearchQuery }) {
         <div className="select-search-form">
           <h4 className="title-select-search-form">Tags</h4>
           <ul>
-            {tagsData.map((tag, index) => (
-              <li key={index} onClick={handleChange}>
+            {tags.map((tag, index) => (
+              <li key={index} onClick={handleQuery}>
                 {tag}
               </li>
             ))}
@@ -61,7 +68,7 @@ export function Search({ onSearchQuery }) {
           aria-label="Barra de pesquisa"
           placeholder="Busque por cards, assuntos ou responsáveis..."
           value={inputSearch}
-          onChange={handleChange}
+          onChange={handleQuery}
         />
       </div>
     </form>

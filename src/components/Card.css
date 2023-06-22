@@ -17,6 +17,7 @@
 .card-title {
   color: var(--black);
   font-weight: 700;
+  font-size: 1.4rem;
   line-height: 1.82rem;
   grid-area: title;
 }

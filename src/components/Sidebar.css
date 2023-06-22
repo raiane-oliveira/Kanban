@@ -12,13 +12,19 @@
   gap: 6rem;
 }
 
+.logo {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
 .menu-wrapper {
   display: none;
 }
 
-.menu-wrapper .menu-btn {
+.menu-wrapper.menu-btn {
   background: none;
   border: 0;
+  line-height: 0;
 }
 
 .menu-wrapper .menu-img {

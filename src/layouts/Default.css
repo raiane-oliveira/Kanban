@@ -2,15 +2,6 @@
   display: flex;
 }
 
-.App.modal-open::after {
-  content: "";
-  display: block;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
 .content-container {
   display: flex;
   flex-direction: column;

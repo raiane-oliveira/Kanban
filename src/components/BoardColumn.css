@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-.board-column h3 {
+.title-board-column {
   padding-top: 2.4rem;
   font-size: 2rem;
   font-weight: 700;

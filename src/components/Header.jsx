@@ -56,6 +56,8 @@ export function Header({ title, isBoardSection }) {
             onClick={updateIsProfileOpen}
             ref={seeProfileRef}
             className="btn-open-profile"
+            aria-label="Abrir perfil do usuário"
+            aria-labelledby="profile"
           >
             <img
               src={user.avatar}
@@ -65,7 +67,7 @@ export function Header({ title, isBoardSection }) {
           </button>
 
           {isProfileOpen && (
-            <div className="settings-profile">
+            <div id="profile" className="settings-profile">
               <span className="name-settings-profile">
                 {user.first_name} {user.last_name}
               </span>
