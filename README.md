@@ -76,3 +76,4 @@ O layout desse projeto foi feito e disponibilizado pela [Rocketseat](https://roc
 Se você tiver opiniões em como podemos melhorar essa aplicação, por favor, nos mande uma mensagem pelo [Linkedin](https://www.linkedin.com/in/raiane-oliveira-dev/) ou um <a href="mailto:raiane.oliveira404@gmail.com">e-mail</a>.
 <br>
 Ficaremos feliz de responder e aprender mais com você! ;) ❤️
+
