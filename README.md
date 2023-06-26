@@ -67,9 +67,7 @@ O layout desse projeto foi feito e disponibilizado pela [Rocketseat](https://roc
 
 ## 👨‍💻 Contribuidores
 
-<a href="https://github.com/raiane-oliveira/kanban/graphs/contributors"  width="100px">
-  <img src="https://contrib.rocks/image?repo=raiane-oliveira/kanban" />
-</a>
+![GitHub Contributors Image](https://contrib.rocks/image?repo=raiane-oliveira/Kanban)
 
 ## 🤝 Feedbacks
 
