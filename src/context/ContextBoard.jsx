@@ -7,7 +7,7 @@ import {
 } from "react";
 import { tasksReducer } from "../tasksReducer";
 import api from "../api";
-import data from "../data";
+import data from "../utils/data";
 
 const BoardContext = createContext();
 
@@ -42,4 +42,4 @@ export function BoardProvider({ children }) {
   );
 }
 
-export const useBoard = () => useContext(BoardContext);
+export const useBoardContext = () => useContext(BoardContext);

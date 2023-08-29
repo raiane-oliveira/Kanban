@@ -2,10 +2,10 @@ import "./Board.css";
 import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
-import { BoardColumn } from "../components/BoardColumn";
-import { Header } from "../components/Header";
-import { Search } from "../components/Search";
-import { useBoard } from "../context/ContextBoard";
+import { BoardColumn } from "../../components/BoardColumn";
+import { Header } from "../../components/Header";
+import { Search } from "../../components/Search";
+import { useBoard } from "../../context/ContextBoard";
 
 export default function Board() {
   const { columns, dispatch } = useBoard();

@@ -1,6 +1,6 @@
 import "./Modal.css";
 import { XCircle } from "@phosphor-icons/react";
-import { useBoard } from "../context/ContextBoard";
+import { useBoard } from "../../context/ContextBoard";
 
 export function Modal({ children, title, onCloseModal }) {
   return (

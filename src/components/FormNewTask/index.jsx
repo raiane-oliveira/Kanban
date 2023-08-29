@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik, useField } from "formik";
-import { useBoard } from "../context/ContextBoard";
+import { useBoard } from "../../context/ContextBoard";
 import "./FormNewTask.css";
 
 const validationSchema = Yup.object({

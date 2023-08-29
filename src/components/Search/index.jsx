@@ -2,7 +2,7 @@ import "./Search.css";
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import { useState, useRef } from "react";
 import { useClickAway } from "react-use";
-import { useBoard } from "../context/ContextBoard";
+import { useBoard } from "../../context/ContextBoard";
 
 export function Search({ onSearchQuery }) {
   const [inputSearch, setInputSearch] = useState("");

@@ -1,8 +1,8 @@
 import "./Profile.css";
-import { Header } from "../components/Header";
-import { Box } from "../components/Box";
-import { Loader } from "../components/Loader";
-import { useBoard } from "../context/ContextBoard";
+import { Header } from "../../components/Header";
+import { Box } from "../../components/Box";
+import { Loader } from "../../components/Loader";
+import { useBoard } from "../../context/ContextBoard";
 import { CaretRight } from "@phosphor-icons/react";
 
 export default function Profile() {

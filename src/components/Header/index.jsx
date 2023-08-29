@@ -2,7 +2,7 @@ import { PencilSimple } from "@phosphor-icons/react";
 
 import "./Header.css";
 import { useRef, useState } from "react";
-import { useBoard } from "../context/ContextBoard";
+import { useBoard } from "../../context/ContextBoard";
 import { Link } from "react-router-dom";
 import { useClickAway } from "react-use";
 

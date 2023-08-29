@@ -10,7 +10,7 @@ import {
 } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { useClickAway } from "react-use";
-import { useBoard } from "../context/ContextBoard";
+import { useBoard } from "../../context/ContextBoard";
 
 export function Sidebar() {
   const { user } = useBoard();

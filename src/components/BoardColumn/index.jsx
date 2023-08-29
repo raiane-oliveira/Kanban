@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import { useBoard } from "../context/ContextBoard";
-import { Card } from "./Card";
-import { Modal } from "./Modal";
-import { FormNewTask } from "./FormNewTask";
+import { useBoard } from "../../context/ContextBoard";
+import { Card } from "../Card";
+import { Modal } from "../Modal";
+import { FormNewTask } from "../FormNewTask";
 import "./BoardColumn.css";
 
 export function BoardColumn({ title, content, id }) {
